@@ -10,6 +10,7 @@ class Nasabah extends Model
     use HasFactory;
 
     protected $table = 'sm_nasabah';
+    public $timestamps = false;
     protected $fillable = [
         'Nama',
         'NoRekening',

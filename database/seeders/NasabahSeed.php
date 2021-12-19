@@ -21,8 +21,8 @@ class NasabahSeed extends Seeder
             // insert data ke table sm_nasabah menggunakan Faker
             DB::table('sm_nasabah')->insert([
                 'Nama' => $faker->name,
-                'NoRekening' => $faker->numerify('#############'),
-                'NIK' => $faker->numerify('################'),
+                'NoRekening' => $faker->numerify('#### #### #####'),
+                'NIK' => $faker->numerify('#### #### #### ####'),
                 'NoTelepon' => $faker->numerify('08##-####-####'),
                 'Alamat' => $faker->address,
                 'Email' => $faker->email,

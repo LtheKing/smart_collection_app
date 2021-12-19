@@ -6,6 +6,9 @@ use App\Models\Nasabah;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\NasabahExport;
+use App\Imports\NasabahImport;
+use DB;
+use Artisan;
 
 class NasabahController extends Controller
 {
@@ -27,7 +30,7 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        //
+        return view('Nasabah.create');
     }
 
     /**
@@ -38,7 +41,19 @@ class NasabahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $request->validate([
+            'Nama' => 'required',
+            'NoRekening' => 'required',
+            'NIK' => 'required',
+            'NoTelepon' => 'required',
+            'Alamat' => 'required',
+            'Email' => 'required',
+        ]);
+
+        Nasabah::create($request->all());
+        return redirect()->route('nasabah_index')->with('Success', 'Data Nasabah Telah Ditambahkan');
     }
 
     /**
@@ -49,7 +64,9 @@ class NasabahController extends Controller
      */
     public function show($id)
     {
-        //
+        Artisan::call('cache:clear');
+        $nasabah = Nasabah::find($id);
+        return view('Nasabah.detail', compact('nasabah'));
     }
 
     /**
@@ -60,7 +77,9 @@ class NasabahController extends Controller
      */
     public function edit($id)
     {
-        //
+        Artisan::call('cache:clear');
+        $nasabah = Nasabah::find($id);
+        return view('Nasabah.edit', compact('nasabah'));
     }
 
     /**
@@ -72,7 +91,18 @@ class NasabahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Nama' => 'required',
+            'NoRekening' => 'required',
+            'NIK' => 'required',
+            'NoTelepon' => 'required',
+            'Alamat' => 'required',
+            'Email' => 'required',
+        ]);
+
+        $data = Nasabah::find($id);
+        $data->update($request->all());
+        return redirect()->route('nasabah_index')->with('Success', 'Data Nasabah Berhasil Diubah');
     }
 
     /**
@@ -89,5 +119,35 @@ class NasabahController extends Controller
     public function export_excel()
     {
         return Excel::download(new NasabahExport, 'Nasabah.xlsx');
+    }
+
+    public function import_excel(Request $request) 
+    {
+        // dd($request->all());
+        Excel::import(new NasabahImport, $request->file('file'));
+           
+        return back();
+    }
+
+    public function checkingResult(){
+        // return Nasabah::all();
+        $data = Nasabah::all();
+        foreach ($data as $value) {
+            $value->NIK = (int)$value->NIK;
+        }
+
+        return $data;
+    }
+
+    //API
+
+    public function getNasabahArray()
+    {
+        $nasabahs = DB::table('sm_nasabah')->get();
+        $data = (object)[
+            'data' => $nasabahs
+        ];
+        // array_push($data->data, $nasabahs);
+        return $data;
     }
 }

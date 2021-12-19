@@ -1,14 +1,13 @@
-@extends('layout')
-
-<table class="display table" id="table_jemaat">
+<table>
     <thead class="table-borderless">
-        <th class="text-center">Nama</th>
-        <th class="text-center">No Rekening</th>
-        <th class="text-center">NIK</th>
-        <th class="text-center">Nomor Telepon</th>
-        <th class="text-center">Alamat</th>
-        <th class="text-center">Email</th>
-        <th class="text-center">Action</th>
+        <tr>
+            <th align="center">Nama</th>
+            <th align="center">No Rekening</th>
+            <th align="center">NIK</th>
+            <th align="center">Nomor Telepon</th>
+            <th align="center">Alamat</th>
+            <th align="center" colspan="3">Email</th>
+        </tr>
     </thead>
     <tbody>
         @foreach ($nasabahs as $item)
@@ -18,8 +17,7 @@
                 <td>{{ $item->NIK }}</td>
                 <td>{{ $item->NoTelepon }}</td>
                 <td>{{ $item->Alamat }}</td>
-                <td>{{ $item->Email }}</td>
-                <td></td>
+                <td colspan="3">{{ $item->Email }}</td>
             </tr>
         @endforeach
     </tbody>
