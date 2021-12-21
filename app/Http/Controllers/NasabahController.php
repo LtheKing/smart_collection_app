@@ -113,7 +113,9 @@ class NasabahController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nasabah = Nasabah::find($id);
+        $nasabah->delete();
+        return back()->with('error', 'data berhasil dihapus');
     }
 
     public function export_excel()
@@ -149,5 +151,12 @@ class NasabahController extends Controller
         ];
         // array_push($data->data, $nasabahs);
         return $data;
+    }
+
+    public function api_delete($id)
+    {
+        $nasabah = Nasabah::find($id);
+        $nasabah->delete();
+        return response('Data Deleted', 200);
     }
 }

@@ -16,7 +16,7 @@ use App\Http\Controllers\NasabahController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
 //NASABAH
 Route::get('/nasabah/index', 'NasabahController@index')->name('nasabah_index');
@@ -27,10 +27,20 @@ Route::post('/nasabah/import/excel', 'NasabahController@import_excel')->name('na
 Route::get('/nasabah/edit/{id}', 'NasabahController@edit')->name('nasabah_edit');
 Route::put('/nasabah/update/{id}', 'nasabahController@update')->name('nasabah_update');
 Route::get('/nasabah/detail/{id}', 'NasabahController@show')->name('nasabah_detail');
+Route::delete('/nasabah/delete/{id}', 'NasabahController@destroy')->name('nasabah_destroy');
 
+//user
+Route::post('/user/login', 'UserController@login')->name('user_login');
+Route::get('/user/register', 'UserController@create')->name('user_register');
+Route::post('/user/store', 'UserController@store')->name('user_store');
 
 //api
+Route::get('/api/token', function() {
+    return csrf_token();
+});
+
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
+Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 
 //testing
 Route::get('/test', 'NasabahController@checkingResult');
