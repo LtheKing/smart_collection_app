@@ -10,25 +10,55 @@
 <h1>Data Nasabah</h1>
 <a href="{{route('nasabah_create')}}" class="btn btn-info" id="btn_create">Nasabah Baru</a>
 
-<form action="{{ route('nasabah_import_excel') }}" method="POST" enctype="multipart/form-data" class="mb-3">
+{{-- EXPORT IMPORT SELECTION --}}
+<div class="mt-3">
+  <label for="action">Import / Export :</label>
+  <select name="action" class="form-control" id="select_action" onchange="actionChange(this)">
+    <option value="Import" selected>Import</option>
+    <option value="Export">Export</option>
+  </select>
+</div>
+
+{{-- IMPORT --}}
+<div class="card mt-3 mb-3" id="container_import">
+  <div class="card-header">
+    Import Section
+  </div>
+
+  <div class="card-body">
+    <form action="{{ route('nasabah_import_excel') }}" method="POST" enctype="multipart/form-data" class="mb-3">
+      @csrf
+      <div class="input-group mb-3 mt-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Import File</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file" 
+              aria-describedby="inputGroupFileAddon01" name="file">
+            <label class="custom-file-label" for="input_file" id="input_file_label">Choose file</label>
+          </div>
+      </div>
+  
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+
+{{-- EXPORT --}}
+<div class="card mt-3 mb-3" id="container_export" hidden=true>
+  <div class="card-header">
+    Export Section
+  </div>
+
+  <form action="{{ route('nasabah_export') }}" method="post">
     @csrf
-    <div class="input-group mb-3 mt-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupFileAddon01">Import File</span>
-        </div>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="file" 
-            aria-describedby="inputGroupFileAddon01" name="file">
-          <label class="custom-file-label" for="input_file" id="input_file_label">Choose file</label>
-        </div>
-    </div>
+    
+  </form>
+  <a href="{{route('nasabah_export_excel')}}" class="btn btn-warning mb-3 float-right">Export</a>
+</div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
-</form>
-
-<a href="{{route('nasabah_export_excel')}}" class="btn btn-warning mb-3 float-right">Export</a>
-
-<table class="display table mb-3" id="table_nasabah">
+{{-- MAIN TABLE --}}
+<table class="display table mb-3 mt-3" id="table_nasabah">
     <thead class="table-borderless">
         <th class="text-center">Nama</th>
         <th class="text-center">No Rekening</th>
@@ -51,6 +81,7 @@
     </tfoot>
 </table>
 
+{{-- MODAL --}}
 <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
     <form class="modal-content" action="/action_page.php">
@@ -149,6 +180,16 @@
             const token = await response.text();
             return token;
         }
+
+  function actionChange(e){
+    if (e.value == 'Import') {
+      document.getElementById('container_export').hidden = true;
+      document.getElementById('container_import').hidden = false;
+    } else {
+      document.getElementById('container_export').hidden = false;
+      document.getElementById('container_import').hidden = true;
+    }
+  }
 </script>
 
 <style>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Nasabah;
 use App\Http\Controllers\NasabahController;
 
 /*
@@ -20,7 +21,7 @@ Route::get('/', function () {
 
 //NASABAH
 Route::get('/nasabah/index', 'NasabahController@index')->name('nasabah_index');
-Route::get('/nasabah/export/excel', 'NasabahController@export_excel')->name('nasabah_export_excel');
+Route::post('/nasabah/export/excel', 'NasabahController@export_excel')->name('nasabah_export_excel');
 Route::get('/nasabah/create', 'NasabahController@create')->name('nasabah_create');
 Route::post('/nasabah/store', 'NasabahController@store')->name('nasabah_store');
 Route::post('/nasabah/import/excel', 'NasabahController@import_excel')->name('nasabah_import_excel');
@@ -44,3 +45,7 @@ Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name(
 
 //testing
 Route::get('/test', 'NasabahController@checkingResult');
+Route::get('/test/bank/{bank}', function($bank){
+    $nasabahs = Nasabah::where('Bank', $bank)->get();
+    return $nasabahs;
+});

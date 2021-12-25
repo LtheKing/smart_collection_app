@@ -118,9 +118,9 @@ class NasabahController extends Controller
         return back()->with('error', 'data berhasil dihapus');
     }
 
-    public function export_excel()
+    public function export_excel(Request $request)
     {
-        return Excel::download(new NasabahExport, 'Nasabah.xlsx');
+        return Excel::download(new NasabahExport($request->Bank), 'Nasabah.xlsx');
     }
 
     public function import_excel(Request $request) 

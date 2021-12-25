@@ -10,16 +10,15 @@ class NasabahExport implements FromView
     /**
     * @return \Illuminate\Support\Collection
     */
-    
+    protected $bank;
+
+    function __construct($bank) {
+            $this->bank = $bank;
+    }
+
     public function view(): View
-    {
-        $data = Nasabah::all();
-        foreach ($data as $key => $value) {
-            $value->NIK = (string)$value->NIK;
-        }
-        
-        return view('Nasabah.report', [
-            'nasabahs' => $data
-        ]);
+    {       
+        $nasabahs = Nasabah::where('Bank', $this->bank)->get();
+        return view('Nasabah.report', compact('nasabahs'));
     }
 }

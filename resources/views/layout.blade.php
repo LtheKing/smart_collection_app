@@ -15,6 +15,21 @@
 
     <script src="{{ asset('js/render.js') }}"></script>
 
+    <style>
+      .main_container {
+        width: 90%;
+        margin: auto;
+      }
+
+      /* Change styles for cancel button and delete button on extra small screens */
+      @media screen and (max-width: 300px) {
+        .cancelbtn,
+        .deletebtn {
+          width: 100%;
+        }
+      }
+    </style>
+
     <title>Tobadihon Mandiri</title>
 </head>
 <body>
@@ -54,9 +69,9 @@
       </nav>
     @show
     <main>
-        <div class="container" id="menu_container">
+        <div class="main_container" id="menu_container">
             @yield('content')
-          </div>
+        </div>
     </main>
 
 </body>
