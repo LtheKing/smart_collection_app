@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nasabah extends Model
+class Bank extends Model
 {
     use HasFactory;
 
-    protected $table = 'sm_nasabah';
+    protected $table = 'sm_bank';
     public $timestamps = false;
     protected $fillable = [
         'Nama',
-        'NoRekening',
-        'NIK',
-        'NoTelepon',
-        'Alamat',
-        'Email',
-        'Bank'
+        'Status',
     ];
 }

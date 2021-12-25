@@ -17,6 +17,7 @@ class NasabahImport implements ToModel, WithHeadingRow
             'NoTelepon'     => $row['nomor_telepon'],
             'Alamat'        => $row['alamat'],
             'Email'         => $row['email'],
+            'Bank'         => $row['bank'],
         ]);
     }
 }

@@ -44,6 +44,10 @@ class UserController extends Controller
             'username' => 'required',
         ]);
 
+        $request->merge([
+            'password' => Hash::make($request->password)
+        ]);
+
         User::create($request->all());
         return redirect()->route('login');
     }

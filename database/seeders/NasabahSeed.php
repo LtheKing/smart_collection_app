@@ -26,6 +26,16 @@ class NasabahSeed extends Seeder
                 'NoTelepon' => $faker->numerify('08##-####-####'),
                 'Alamat' => $faker->address,
                 'Email' => $faker->email,
+                'Bank' => $faker->randomElement([
+                    'BCA',
+                    'Mandiri',
+                    'BRI',
+                    'BNI',
+                    'Nobu Bank',
+                    'OCBC NISP',
+                    'DBS',
+                    'Maybank'
+                ]),
             ]);
         }
     }

@@ -26,7 +26,7 @@
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 
-<a href="{{route('nasabah_export_excel')}}" class="btn btn-warning mb-3">Export</a>
+<a href="{{route('nasabah_export_excel')}}" class="btn btn-warning mb-3 float-right">Export</a>
 
 <table class="display table mb-3" id="table_nasabah">
     <thead class="table-borderless">
