@@ -33,8 +33,8 @@
             <span class="input-group-text" id="inputGroupFileAddon01">Import File</span>
           </div>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="file" 
-              aria-describedby="inputGroupFileAddon01" name="file">
+            <input type="file" class="custom-file-input" id="input_file" 
+              aria-describedby="inputGroupFileAddon01" name="file" onchange="loadFile()">
             <label class="custom-file-label" for="input_file" id="input_file_label">Choose file</label>
           </div>
       </div>
@@ -50,11 +50,15 @@
     Export Section
   </div>
 
-  <form action="{{ route('nasabah_export') }}" method="post">
-    @csrf
-    
-  </form>
-  <a href="{{route('nasabah_export_excel')}}" class="btn btn-warning mb-3 float-right">Export</a>
+  <div class="card-body">
+    <form action="{{ route('nasabah_export_excel') }}" method="post" class="mb-3">
+      @csrf
+      <input type="text" class="form-control mb-3 mt-3  " id="input_filter_bank_export" placeholder="Bank">
+  
+      <button class="btn btn-warning mt-3">Export</button>
+    </form>
+  </div>
+
 </div>
 
 {{-- MAIN TABLE --}}
@@ -66,7 +70,7 @@
         <th class="text-center">Nomor Telepon</th>
         <th class="text-center">Alamat</th>
         <th class="text-center">Email</th>
-        <th class="text-center">Action</th>
+        <th class="text-center col-action">Action</th>
     </thead>
     <tfoot>
         <tr>
@@ -76,7 +80,7 @@
             <th class="text-center">Nomor Telepon</th>
             <th class="text-center">Alamat</th>
             <th class="text-center">Email</th>
-            <th class="text-center">Action</th>
+            <th class="text-center col-action">Action</th>
         </tr>
     </tfoot>
 </table>
@@ -110,11 +114,11 @@
                     { "data": "Alamat"},
                     { "data": "Email"},
                     { "defaultContent": 
-                        "<button class='btn btn-warning btnEdit btnTable' type='button'>Edit</button>" +
+                        "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
                         "&nbsp;&nbsp;" +
-                        "<button class='btn btn-secondary btnDetail btnTable' type='button'>Detail</button>" +
+                        "<button class='btn btn-secondary btnDetail btnTable btn-sm' type='button'>Detail</button>" +
                         "&nbsp;&nbsp;" +
-                        "<button class='btn btn-danger btnDelete btnTable' type='button'>Delete</button>"
+                        "<button class='btn btn-danger btnDelete btnTable btn-sm' type='button'>Delete</button>"
                     }
                 ],
                 columnDefs: [{
@@ -189,6 +193,18 @@
       document.getElementById('container_export').hidden = false;
       document.getElementById('container_import').hidden = true;
     }
+  }
+
+  function loadFile(){
+    var fullPath = document.getElementById('input_file').value;
+      if (fullPath) {
+          var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+          var filename = fullPath.substring(startIndex);
+          if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+              filename = filename.substring(1);
+          }
+          document.getElementById('input_file_label').innerHTML = filename
+      }
   }
 </script>
 
@@ -289,7 +305,15 @@ hr {
 }
 
 .btnTable {
-    width: 2cm;
+  /* display: block;
+  margin: auto; */
+  width: auto;
+  display:inline-block;
+  font-size: 12px;
+}
+
+.col-action {
+  width: 15%;
 }
 
 /* Change styles for cancel button and delete button on extra small screens */
