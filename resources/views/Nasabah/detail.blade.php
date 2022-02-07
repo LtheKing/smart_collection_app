@@ -21,7 +21,7 @@
             <dd>{{ $nasabah->NIK }}</dd>
 
             <dt>Nomor Telepon :</dt>
-            <dd>{{ $nasabah->NoTelepon }} </dd>
+            <dd>{{ $nasabah->NoTelepon }} &nbsp; <a href="tel:{{ $nasabah->NoTelepon }}" class="btn btn-danger">call</a> </dd>
 
             <dt>Alamat :</dt>
             <dd>{{ $nasabah->Alamat }}</dd>

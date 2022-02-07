@@ -53,7 +53,7 @@
   <div class="card-body">
     <form action="{{ route('nasabah_export_excel') }}" method="post" class="mb-3">
       @csrf
-      <input type="text" class="form-control mb-3 mt-3  " id="input_filter_bank_export" placeholder="Bank">
+      <input type="text" class="form-control mb-3 mt-3  " id="input_filter_bank_export" placeholder="Bank" name="Bank">
   
       <button class="btn btn-warning mt-3">Export</button>
     </form>
@@ -179,11 +179,11 @@
             return resData;
         }
 
-        async function getToken() {
-            const response = await fetch(localhost + 'api/token');
-            const token = await response.text();
-            return token;
-        }
+  async function getToken() {
+    const response = await fetch(localhost + 'api/token');
+    const token = await response.text();
+    return token;
+  }
 
   function actionChange(e){
     if (e.value == 'Import') {

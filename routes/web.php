@@ -19,28 +19,40 @@ Route::get('/', function () {
     return view('welcome');
 })->name('login');
 
-//NASABAH
-Route::get('/nasabah/index', 'NasabahController@index')->name('nasabah_index');
-Route::post('/nasabah/export/excel', 'NasabahController@export_excel')->name('nasabah_export_excel');
-Route::get('/nasabah/create', 'NasabahController@create')->name('nasabah_create');
-Route::post('/nasabah/store', 'NasabahController@store')->name('nasabah_store');
-Route::post('/nasabah/import/excel', 'NasabahController@import_excel')->name('nasabah_import_excel');
-Route::get('/nasabah/edit/{id}', 'NasabahController@edit')->name('nasabah_edit');
-Route::put('/nasabah/update/{id}', 'nasabahController@update')->name('nasabah_update');
-Route::get('/nasabah/detail/{id}', 'NasabahController@show')->name('nasabah_detail');
-Route::delete('/nasabah/delete/{id}', 'NasabahController@destroy')->name('nasabah_destroy');
-
 //user
 Route::post('/user/login', 'UserController@login')->name('user_login');
 Route::get('/user/register', 'UserController@create')->name('user_register');
 Route::post('/user/store', 'UserController@store')->name('user_store');
+
+Route::middleware('usersession')->group(function() {
+    Route::get('/nasabah/index', 'NasabahController@index')->name('nasabah_index');
+    //NASABAH
+    Route::post('/nasabah/export/excel', 'NasabahController@export_excel')->name('nasabah_export_excel');
+    Route::get('/nasabah/create', 'NasabahController@create')->name('nasabah_create');
+    Route::post('/nasabah/store', 'NasabahController@store')->name('nasabah_store');
+    Route::post('/nasabah/import/excel', 'NasabahController@import_excel')->name('nasabah_import_excel');
+    Route::get('/nasabah/edit/{id}', 'NasabahController@edit')->name('nasabah_edit');
+    Route::put('/nasabah/update/{id}', 'nasabahController@update')->name('nasabah_update');
+    Route::get('/nasabah/detail/{id}', 'NasabahController@show')->name('nasabah_detail');
+    Route::delete('/nasabah/delete/{id}', 'NasabahController@destroy')->name('nasabah_destroy');
+    
+    //TEAM LEAD
+    Route::get('/teamlead/distribusi_kerjaan', 'TeamLeadController@distribusi')->name('tl_distribusi');
+});
+
 
 //api
 Route::get('/api/token', function() {
     return csrf_token();
 });
 
+Route::get('/logout', function(){
+    session()->flush();
+    return redirect('/');
+})->name('logout');
+
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
+Route::get('/teamlead/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 
 //testing

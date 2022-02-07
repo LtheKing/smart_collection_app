@@ -1,0 +1,5 @@
+prioritas : 
+1. massive select data, yang kebayang baru bikin table dan diceklis lalu disubmit, atau bikin movement select box
+    referensi :
+    - https://stackoverflow.com/questions/25757606/dynamically-moving-elements-from-left-to-right-select
+2. store login data in session [DONE]

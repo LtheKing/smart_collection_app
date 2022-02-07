@@ -11,12 +11,16 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $isExist = User::where('username', $request->username)->get();
-        $passwordCorrect = false;
 
         if (Count($isExist) > 0) {
             $checkPass = Hash::check($request->password, $isExist[0]->password);
             
             if ($checkPass) {
+                session([
+                    'username' => $request->username,
+                    'role' => $isExist[0]->role
+                ]);
+                
                 return redirect()->route('nasabah_index');
             } 
             else 
