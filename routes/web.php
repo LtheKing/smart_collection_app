@@ -38,6 +38,9 @@ Route::middleware('usersession')->group(function() {
     
     //TEAM LEAD
     Route::get('/teamlead/distribusi_kerjaan', 'TeamLeadController@distribusi')->name('tl_distribusi');
+
+    //DESK COLL
+    Route::get('/deskcoll/index', 'DeskCollController@index')->name('dc_index');
 });
 
 
@@ -52,7 +55,8 @@ Route::get('/logout', function(){
 })->name('logout');
 
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
-Route::get('/teamlead/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
+// Route::get('/teamlead/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
+Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 
 //testing
@@ -61,3 +65,4 @@ Route::get('/test/bank/{bank}', function($bank){
     $nasabahs = Nasabah::where('Bank', $bank)->get();
     return $nasabahs;
 });
+Route::get('/test/deskcoll', 'DeskCollController@getData');

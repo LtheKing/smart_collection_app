@@ -48,7 +48,7 @@
               <a class="nav-link" href="{{ route('tl_distribusi') }}">Distribusi Pekerjaan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="{{ route('dc_index') }}">Desk Coll</a>
             </li>
           </ul>
         </div>

@@ -13,8 +13,13 @@ class CreateDescHoldModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('desc_hold_models', function (Blueprint $table) {
+        Schema::create('sm_deskcoll', function (Blueprint $table) {
             $table->id();
+            $table->string('Nama');
+            $table->string('NoTelepon');
+            $table->string('Alamat');
+            $table->string('Email');
+            $table->string('NIP');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateDescHoldModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('desc_hold_models');
+        Schema::dropIfExists('sm_deskcoll');
     }
 }

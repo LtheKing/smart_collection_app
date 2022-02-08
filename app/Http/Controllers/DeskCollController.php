@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeskColl;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use DB;
+use Artisan;
 
-class DescHoldController extends Controller
+class DeskCollController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,7 @@ class DescHoldController extends Controller
      */
     public function index()
     {
-        //
+        return view('DeskColl.index');
     }
 
     /**
@@ -80,5 +84,16 @@ class DescHoldController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //API
+    public function getData()
+    {
+        $dc = DB::table('sm_deskcoll')->get();
+        $data = (object)[
+            'data' => $dc
+        ];
+        // array_push($data->data, $nasabahs);
+        return $data;
     }
 }
