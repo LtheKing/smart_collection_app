@@ -15,8 +15,8 @@ class TeamLeadController extends Controller
 {
     public function distribusi()
     {
-        $dc = DB::table('sm_deskcoll')->get();
-        // dd($data);
-        return view('TeamLead.distribusi', compact('dc'));
+        $dc = DeskColl::all();
+        $n = Nasabah::all();
+        return view('TeamLead.distribusi', compact('dc', 'n'));
     }
 }
