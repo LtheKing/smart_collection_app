@@ -18,6 +18,7 @@ class Nasabah extends Model
         'NoTelepon',
         'Alamat',
         'Email',
-        'Bank'
+        'Bank',
+        'Deskcoll_id'
     ];
 }

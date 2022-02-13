@@ -3,3 +3,6 @@ prioritas :
     referensi :
     - https://stackoverflow.com/questions/25757606/dynamically-moving-elements-from-left-to-right-select
 2. create CRUD Deskcoll
+
+notes :
+- table nasabah ditambahin field Deskcoll_id buat nandain nasabah itu bagian siapa

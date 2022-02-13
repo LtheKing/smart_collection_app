@@ -55,7 +55,7 @@ Route::get('/logout', function(){
 })->name('logout');
 
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
-// Route::get('/teamlead/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
+Route::get('/teamlead/nasabah/array', 'NasabahController@getNasabahArray')->name('teamlead_array');
 Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 
