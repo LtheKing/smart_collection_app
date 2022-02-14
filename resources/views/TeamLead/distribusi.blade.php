@@ -16,30 +16,6 @@
         </select>
     </div>
 
-    {{-- <div class="mb-3">
-            <table class="table">
-                <tr>
-                    <td>
-                        <select name="leftProcess" size="15" class="form-control">
-                            @foreach ($n as $item)
-                                <option value="{{ $item->Nama }}">{{ $item->Nama }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="text-center">
-                        <button type="button" onclick="moveRight('leftProcess','rightProcess');" class="btn btn-secondary mb-3 mt-2">>></button>
-                        <br />
-                        <button type="button" onclick="moveRight('rightProcess','leftProcess')" class="btn btn-secondary mt-3"><<</button>
-                    </td>
-                    <td>
-                        <select name="rightProcess" size="15" class="form-control">
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div> --}}
-    {{-- </form> --}}
-
     <form action="#" id="form1">
         <div class="row">
             <div class="col-9">
@@ -68,26 +44,14 @@
             </div>
 
             <div class="col-3" style="margin-top: 3cm;">
-                <button type="button" class="btn btn-danger mb-3">Remove</button>
-                <select name="" id="input_selected" class="form-control"></select>
+                <button type="button" class="btn btn-danger mb-3" onclick="remove();">Hapus</button>
+                <select name="" id="input_selected" class="form-control" size="15"></select>
+                <button class="btn btn-success mt-3">Simpan</button>
             </div>
         </div>
     </form>
 
     <script>
-        // function moveRight(leftValue, rightValue) {
-        //     //alert("Elft value is t : "+leftValue);
-        //     var leftSelect = document.forms["form1"].elements[leftValue];
-        //     var rightSelect = document.forms["form1"].elements[rightValue];
-
-        //     //alert("test : " + document.forms["form1"].elements[myLeftId].options[selItem].value);
-        //     if (leftSelect.selectedIndex == -1) {
-        //         window.alert("You must first select an item on the left side.")
-        //     } else {
-        //         var option = leftSelect.options[leftSelect.selectedIndex];
-        //         rightSelect.appendChild(option);
-        //     }
-        // }
 
         $(document).ready(function() {
             var table = $('#table_nasabah').DataTable({
@@ -130,11 +94,33 @@
         });
 
         function selectData(data) {
+            // debugger;
             const inputSelect = document.getElementById('input_selected');
             var option = document.createElement("option");
             option.text = data.Nama;
             option.value = data.id;
+
+            var arr = Array.apply(null, inputSelect);
+            var exist = arr.filter(x => x.value == data.id);
+
+            if (arr.length > 0 && exist.length > 0) {
+                alert('Data Sudah Dipilih !');
+                return;
+            }
+
             inputSelect.appendChild(option);
+        }
+
+        function remove() {
+            // debugger;
+            const inputSelect = document.getElementById('input_selected');
+            
+            if (inputSelect.selectedIndex == -1) {
+                alert('Pilih Data Terlebih Dahulu !');
+                return;
+            }
+
+            inputSelect.remove(inputSelect.selectedIndex);
         }
     </script>
 @endsection
