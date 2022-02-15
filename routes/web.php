@@ -67,3 +67,4 @@ Route::get('/test/bank/{bank}', function($bank){
     return $nasabahs;
 });
 Route::get('/test/deskcoll', 'DeskCollController@getData');
+Route::get('/test/nasabah/custom/export', 'NasabahController@export_excel_custom');

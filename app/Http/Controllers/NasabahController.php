@@ -6,6 +6,7 @@ use App\Models\Nasabah;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\NasabahExport;
+use App\Exports\NasabahCustomExport;
 use App\Imports\NasabahImport;
 use DB;
 use Artisan;
@@ -139,6 +140,20 @@ class NasabahController extends Controller
         }
 
         return $data;
+    }
+
+    public function export_excel_custom()
+    {
+        $field = "Nama,NoRekening,NIK";
+        $bank = "BCA";
+        return Excel::download(new NasabahCustomExport($field, $bank), 'NasabahCustom.xlsx');
+
+        // $data = DB::table('sm_nasabah')
+        //             ->select('Nama', 'NoRekening', 'NIK')
+        //             ->where('Bank', 'BCA')
+        //             ->get();
+        // dd($data);
+        // return;
     }
 
     //API
