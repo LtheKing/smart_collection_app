@@ -80,6 +80,113 @@ class CustomerSeeder extends Seeder
                 'OtherNumber' => $faker->numerify('08##-####-####'),
                 'ECName' => $faker->name,
                 'ECName2' => $faker->name,
+                'StatusEC' => $faker->randomElement([
+                    'BROTHER',
+                    'MOTHER',
+                    'SON',
+                    'FRIEND',
+                    'SISTER',
+                    'FATHER',
+                    'OTHER RELATIVE',
+                ]),
+                'StatusEC2' => $faker->randomElement([
+                'BROTHER',
+                    'MOTHER',
+                    'SON',
+                    'FRIEND',
+                    'SISTER',
+                    'FATHER',
+                    'OTHER RELATIVE',
+                ]),
+                'MotherName' => $faker->name,
+                'Sex' => $faker->randomElement([
+                    'MALE',
+                    'FEMALE',
+                ]),
+                'Email' => $faker->email,
+                'VirtualAccount' => $faker->numerify('##########'),
+                'VirtualAccountName' => $faker->name,
+                'Komoditi' => $faker->randomElement([
+                    'LEISURE',
+                    'Handphone / Smart Phone',
+                    'Audio / Video Player',
+                    'MEDICAL',
+                ]),
+                'KomoditiType' => $faker->randomElement([
+                    'CAT_MP',
+                    'CAT_CD',
+                ]),
+                'Produsen' => $faker->randomElement([
+                    'APPLE',
+                    'XIAOMI',
+                    'VIVO',
+                ]),
+                'Model' => $faker->randomElement([
+                    'Model 1',
+                    'Model 2',
+                    'Model 3',
+                ]),
+                'LoanTerm' => $faker->randomElement([
+                    '3',
+                    '6',
+                    '9',
+                    '12',
+                ]),
+                'InstallmentAlreadyPaid' => $faker->numerify('Rp.#.###.###'),
+                'MonthlyPaymentNominal' => $faker->numerify('Rp.#.###.###'),
+                'DPD' => $faker->numerify('###'),
+                'Bucket' => $faker->randomElement([
+                    'M4',
+                    'M5',
+                    'M6',
+                    'M7',
+                ]),
+                'BillingNoPenalty' => $faker->numerify('Rp.#.###.###'),
+                'DendaBelumDibayar' => $faker->numerify('Rp.#.###.###'),
+                'LastVisitDate' => $faker->date,
+                'LastVisitResult' => $faker->randomElement([
+                    'LFCRefuseToPay',
+                    'LFChouseLocked',
+                    'LFCleftMessage',
+                ]),
+                'LastReport' => $faker->randomElement([
+                    'Orangnya ga ada',
+                    'Marah marah',
+                    'diam aja',
+                ]),
+                'LastVisitAddress' => $faker->address,
+                'LastReport' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OTSOffer' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OtherData1' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OtherData2' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OtherData3' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OtherData4' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'OtherData5' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
+                'PermanentMessage' => $faker->randomElement([
+                    'Yes',
+                    'No',
+                ]),
             ]);
         }
     }
