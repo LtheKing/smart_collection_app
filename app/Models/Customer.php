@@ -20,6 +20,7 @@ class Customer extends Model
         'AssignmentDate',
         'ExpireDate',
         'DateOfBirth',
+
         'OpenDate',
         'WODate',
         'LastPayDate',
@@ -29,6 +30,7 @@ class Customer extends Model
         'Limit',
         'Principal',
         'MinPay',
+
         'OSBalance',
         'Address1',
         'Address2',
@@ -40,6 +42,7 @@ class Customer extends Model
         'OfficeAddress2',
         'OfficeAddress3',
         'OfficeAddress4',
+
         'Phone1',
         'Phone2',
         'HomePhone1',
@@ -49,6 +52,7 @@ class Customer extends Model
         'ECPhone1',
         'ECPhone2',
         'OtherNumber',
+
         'ECName',
         'ECName2',
         'StatusEC',
@@ -56,6 +60,7 @@ class Customer extends Model
         'MotherName',
         'Sex',
         'Email',
+
         'VirtualAccount',
         'VirtualAccountName',
         'Komoditi',
@@ -65,6 +70,7 @@ class Customer extends Model
         'LoanTerm',
         'InstallmentAlreadyPaid',
         'MonthlyPaymentNominal',
+
         'DPD',
         'Bucket',
         'BillingNoPenalty',
@@ -74,6 +80,7 @@ class Customer extends Model
         'LastReport',
         'LastVisitAddress',
         'OTSOffer',
+        
         'OtherData1',
         'OtherData2',
         'OtherData3',

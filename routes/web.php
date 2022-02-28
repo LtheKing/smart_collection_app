@@ -42,6 +42,10 @@ Route::middleware('usersession')->group(function() {
 
     //DESK COLL
     Route::get('/deskcoll/index', 'DeskCollController@index')->name('dc_index');
+
+    //Customer
+    Route::get('/customer/index', 'CustomerController@index')->name('customer_index');
+    Route::get('/customer/detail/{id}', 'CustomerController@show')->name('customer_detail');
 });
 
 
@@ -58,6 +62,7 @@ Route::get('/logout', function(){
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
 Route::get('/teamlead/nasabah/array', 'NasabahController@getNasabahArray')->name('teamlead_array');
 Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
+Route::get('/customer/array', 'CustomerController@getAll')->name('customer_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 
 //testing

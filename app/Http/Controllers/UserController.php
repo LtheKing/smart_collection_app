@@ -21,7 +21,7 @@ class UserController extends Controller
                     'role' => $isExist[0]->role
                 ]);
                 
-                return redirect()->route('nasabah_index');
+                return redirect()->route('customer_index');
             } 
             else 
             {
