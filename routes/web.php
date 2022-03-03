@@ -46,6 +46,7 @@ Route::middleware('usersession')->group(function() {
     //Customer
     Route::get('/customer/index', 'CustomerController@index')->name('customer_index');
     Route::get('/customer/detail/{id}', 'CustomerController@show')->name('customer_detail');
+    Route::get('/customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
 });
 
 

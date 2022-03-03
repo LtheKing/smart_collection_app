@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Customer;
+use App\Models\Bank;
 use Artisan;
 
 class CustomerController extends Controller
@@ -61,7 +62,10 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        Artisan::call('cache:clear');
+        $customer = Customer::find($id);
+        $bank = Bank::all();
+        return view('Customer.edit', compact('customer', 'bank'));
     }
 
     /**
