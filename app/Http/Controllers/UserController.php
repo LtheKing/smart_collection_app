@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DB;
+use App\Models\Customer;
+use App\Models\Bank;
+use Artisan;
 
 class UserController extends Controller
 {
@@ -54,5 +58,27 @@ class UserController extends Controller
 
         User::create($request->all());
         return redirect()->route('login');
+    }
+
+    public function index() {
+        return view('User.index');
+    }
+
+    //api
+    public function getAll()
+    {
+        $users = DB::table('users')->get();
+        $data = (object)[
+            'data' => $users
+        ];
+
+        return $data;
+    }
+
+    public function api_delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return response('Data Deleted', 200);
     }
 }

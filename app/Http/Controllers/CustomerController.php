@@ -102,4 +102,11 @@ class CustomerController extends Controller
 
         return $data;
     }
+
+    public function api_delete($id)
+    {
+        $customer = Customer::find($id);
+        $customer->delete();
+        return response('Data Deleted', 200);
+    }
 }

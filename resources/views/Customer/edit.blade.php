@@ -170,7 +170,11 @@
                     <label for="inputcity" class="form-label">City</label>
                     <input type="text" class="form-control" id="inputcity" name="city" value="{{ old('city', $customer->City) }}">
                 </div>
+            </div>
 
+            {{-- COLUMN 4 --}}
+
+            <div class="col">
                 <div class="mb-3" id="div_OfficeName">
                     <label for="inputOfficeName" class="form-label">Office Name</label>
                     <input type="text" class="form-control" id="inputOfficeName" name="OfficeName" value="{{ old('OfficeName', $customer->OfficeName) }}">
@@ -197,55 +201,59 @@
                 </div>
             </div>
 
-            {{-- COLUMN 4 --}}
+            {{-- COLUMN 5 --}}
             <div class="col">
                 <div class="mb-3" id="div_Phone1">
                     <label for="inputPhone1" class="form-label">Phone 1</label>
-                    <input type="number" class="form-control" id="inputPhone1" name="Phone1" value="{{ old('Phone1', $customer->Phone1) }}">
+                    <input type="text" class="form-control" id="inputPhone1" name="Phone1" value="{{ old('Phone1', $customer->Phone1) }}">
                 </div>
 
                 <div class="mb-3" id="div_Phone2">
                     <label for="inputPhone2" class="form-label">Phone 2</label>
-                    <input type="number" class="form-control" id="inputPhone2" name="Phone2" value="{{ old('Phone2', $customer->Phone2) }}">
+                    <input type="text" class="form-control" id="inputPhone2" name="Phone2" value="{{ old('Phone2', $customer->Phone2) }}">
                 </div>
 
                 <div class="mb-3" id="div_HomePhone1">
                     <label for="inputHomePhone1" class="form-label">HomePhone 1</label>
-                    <input type="number" class="form-control" id="inputHomePhone1" name="HomePhone1" value="{{ old('HomePhone1', $customer->HomePhone1) }}">
+                    <input type="text" class="form-control" id="inputHomePhone1" name="HomePhone1" value="{{ old('HomePhone1', $customer->HomePhone1) }}">
                 </div>
 
                 <div class="mb-3" id="div_HomePhone2">
                     <label for="inputHomePhone2" class="form-label">HomePhone 2</label>
-                    <input type="number" class="form-control" id="inputHomePhone2" name="HomePhone2" value="{{ old('HomePhone2', $customer->HomePhone2) }}">
+                    <input type="text" class="form-control" id="inputHomePhone2" name="HomePhone2" value="{{ old('HomePhone2', $customer->HomePhone2) }}">
                 </div>
 
                 <div class="mb-3" id="div_OfficePhone1">
                     <label for="inputOfficePhone1" class="form-label">Office Phone 1</label>
-                    <input type="number" class="form-control" id="inputOfficePhone1" name="OfficePhone1" value="{{ old('OfficePhone1', $customer->OfficePhone1) }}">
+                    <input type="text" class="form-control" id="inputOfficePhone1" name="OfficePhone1" value="{{ old('OfficePhone1', $customer->OfficePhone1) }}">
                 </div>
 
                 <div class="mb-3" id="div_OfficePhone2">
                     <label for="inputOfficePhone2" class="form-label">Office Phone 2</label>
-                    <input type="number" class="form-control" id="inputOfficePhone2" name="OfficePhone2" value="{{ old('OfficePhone2', $customer->OfficePhone2) }}">
+                    <input type="text" class="form-control" id="inputOfficePhone2" name="OfficePhone2" value="{{ old('OfficePhone2', $customer->OfficePhone2) }}">
                 </div>
 
                 <div class="mb-3" id="div_ECPhone1">
                     <label for="inputECPhone1" class="form-label">EC Phone 1</label>
-                    <input type="number" class="form-control" id="inputECPhone1" name="ECPhone1" value="{{ old('ECPhone1', $customer->ECPhone1) }}">
+                    <input type="text" class="form-control" id="inputECPhone1" name="ECPhone1" value="{{ old('ECPhone1', $customer->ECPhone1) }}">
                 </div>
 
                 <div class="mb-3" id="div_ECPhone2">
                     <label for="inputECPhone2" class="form-label">EC Phone 2</label>
-                    <input type="number" class="form-control" id="inputECPhone2" name="ECPhone2" value="{{ old('ECPhone2', $customer->ECPhone2) }}">
+                    <input type="text" class="form-control" id="inputECPhone2" name="ECPhone2" value="{{ old('ECPhone2', $customer->ECPhone2) }}">
                 </div>
 
                 <div class="mb-3" id="div_OtherNumber">
                     <label for="inputOtherNumber" class="form-label">Other Number</label>
-                    <input type="number" class="form-control" id="inputOtherNumber" name="OtherNumber" value="{{ old('OtherNumber', $customer->OtherNumber) }}">
+                    <input type="text" class="form-control" id="inputOtherNumber" name="OtherNumber" value="{{ old('OtherNumber', $customer->OtherNumber) }}">
                 </div>
             </div>
+        </div>
 
-            {{-- COLUMN 5 --}}
+        {{-- ROW 2 --}}
+
+        <div class="row">
+            {{-- COLUMN 1 --}}
             <div class="col">
                 <div class="mb-3" id="div_ECName">
                     <label for="inputECName" class="form-label">EC Name</label>
@@ -297,9 +305,113 @@
                     <input type="text" class="form-control" id="inputVirtualAccountName" name="VirtualAccountName" value="{{ old('VirtualAccountName', $customer->VirtualAccountName) }}">
                 </div>
 
-                <div class="mb-3" id="div_VirtualAccountName">
-                    <label for="inputVirtualAccountName" class="form-label">Virtual Account Name</label>
-                    <input type="text" class="form-control" id="inputVirtualAccountName" name="VirtualAccountName" value="{{ old('VirtualAccountName', $customer->VirtualAccountName) }}">
+                <div class="mb-3" id="div_Komoditi">
+                    <label for="inputKomoditi" class="form-label">Komoditi</label>
+                    <input type="text" class="form-control" id="inputKomoditi" name="Komoditi" value="{{ old('Komoditi', $customer->Komoditi) }}">
+                </div>
+
+                <div class="mb-3" id="div_KomoditiType">
+                    <label for="inputKomoditiType" class="form-label">Komoditi Type</label>
+                    <input type="text" class="form-control" id="inputKomoditiType" name="KomoditiType" value="{{ old('KomoditiType', $customer->KomoditiType) }}">
+                </div>
+
+                <div class="mb-3" id="div_Produsen">
+                    <label for="inputProdusen" class="form-label">Produsen</label>
+                    <input type="text" class="form-control" id="inputProdusen" name="Produsen" value="{{ old('Produsen', $customer->Produsen) }}">
+                </div>
+
+                <div class="mb-3" id="div_Model">
+                    <label for="inputModel" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="inputModel" name="Model" value="{{ old('Model', $customer->Model) }}">
+                </div>
+
+                <div class="mb-3" id="div_LoanTerm">
+                    <label for="inputLoanTerm" class="form-label">Loan Term</label>
+                    <input type="text" class="form-control" id="inputLoanTerm" name="LoanTerm" value="{{ old('LoanTerm', $customer->LoanTerm) }}">
+                </div>
+
+                <div class="mb-3" id="div_InstallmentAlreadyPaid">
+                    <label for="inputInstallmentAlreadyPaid" class="form-label">Installment Already Paid</label>
+                    <input type="text" class="form-control" id="inputInstallmentAlreadyPaid" name="InstallmentAlreadyPaid" value="{{ old('InstallmentAlreadyPaid', $customer->InstallmentAlreadyPaid) }}">
+                </div>
+
+                <div class="mb-3" id="div_MonthlyPaymentNominal">
+                    <label for="inputMonthlyPaymentNominal" class="form-label">Monthly Payment Nominal</label>
+                    <input type="text" class="form-control" id="inputMonthlyPaymentNominal" name="MonthlyPaymentNominal" value="{{ old('MonthlyPaymentNominal', $customer->MonthlyPaymentNominal) }}">
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3" id="div_DPD">
+                    <label for="inputDPD" class="form-label">DPD</label>
+                    <input type="number" class="form-control" id="inputDPD" name="DPD" value="{{ old('DPD', $customer->DPD) }}">
+                </div>
+
+                <div class="mb-3" id="div_Bucket">
+                    <label for="inputBucket" class="form-label">Bucket</label>
+                    <input type="text" class="form-control" id="inputBucket" name="Bucket" value="{{ old('Bucket', $customer->Bucket) }}">
+                </div>
+
+                <div class="mb-3" id="div_BillingNoPenalty">
+                    <label for="inputBillingNoPenalty" class="form-label">Billing No Penalty</label>
+                    <input type="text" class="form-control" id="inputBillingNoPenalty" name="BillingNoPenalty" value="{{ old('BillingNoPenalty', $customer->BillingNoPenalty) }}">
+                </div>
+
+                <div class="mb-3" id="div_DendaBelumDibayar">
+                    <label for="inputDendaBelumDibayar" class="form-label">Denda Belum Dibayar</label>
+                    <input type="text" class="form-control" id="inputDendaBelumDibayar" name="DendaBelumDibayar" value="{{ old('DendaBelumDibayar', $customer->DendaBelumDibayar) }}">
+                </div>
+
+                <div class="mb-3" id="div_LastVisitDate">
+                    <label for="inputLastVisitDate" class="form-label">Last Visit Date</label>
+                    <input type="text" class="form-control" id="inputLastVisitDate" name="LastVisitDate" value="{{ old('LastVisitDate', $customer->LastVisitDate) }}">
+                </div>
+
+                <div class="mb-3" id="div_LastVisitResult">
+                    <label for="inputLastVisitResult" class="form-label">Last Visit Result</label>
+                    <input type="text" class="form-control" id="inputLastVisitResult" name="LastVisitResult" value="{{ old('LastVisitResult', $customer->LastVisitResult) }}">
+                </div>
+
+                <div class="mb-3" id="div_LastReport">
+                    <label for="inputLastReport" class="form-label">LastReport</label>
+                    <input type="text" class="form-control" id="inputLastReport" name="LastReport" value="{{ old('LastReport', $customer->LastReport) }}">
+                </div>
+
+                <div class="mb-3" id="div_LastVisitAddress">
+                    <label for="inputLastVisitAddress" class="form-label">Last Visit Address</label>
+                    <textarea class="form-control" id="inputLastVisitAddress" name="LastVisitAddress"> {{ old('LastVisitAddress', $customer->LastVisitAddress) }} </textarea>
+                </div>
+
+                <div class="mb-3" id="div_OTSOffer">
+                    <label for="inputOTSOffer" class="form-label">OTS Offer</label>
+                    <input type="text" class="form-control" id="inputOTSOffer" name="OTSOffer" value="{{ old('OTSOffer', $customer->OTSOffer) }}">
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3" id="div_OtherData1">
+                    <label for="inputOtherData1" class="form-label">Other Data 1</label>
+                    <input type="text" class="form-control" id="inputOtherData1" name="OtherData1" value="{{ old('OtherData1', $customer->OtherData1) }}">
+                </div>
+
+                <div class="mb-3" id="div_OtherData2">
+                    <label for="inputOtherData2" class="form-label">Other Data 2</label>
+                    <input type="text" class="form-control" id="inputOtherData2" name="OtherData2" value="{{ old('OtherData2', $customer->OtherData2) }}">
+                </div>
+
+                <div class="mb-3" id="div_OtherData3">
+                    <label for="inputOtherData3" class="form-label">Other Data 3</label>
+                    <input type="text" class="form-control" id="inputOtherData3" name="OtherData3" value="{{ old('OtherData3', $customer->OtherData3) }}">
+                </div>
+
+                <div class="mb-3" id="div_OtherData4">
+                    <label for="inputOtherData4" class="form-label">Other Data 4</label>
+                    <input type="text" class="form-control" id="inputOtherData4" name="OtherData4" value="{{ old('OtherData4', $customer->OtherData4) }}">
+                </div>
+
+                <div class="mb-3" id="div_OtherData5">
+                    <label for="inputOtherData5" class="form-label">Other Data 5</label>
+                    <input type="text" class="form-control" id="inputOtherData5" name="OtherData5" value="{{ old('OtherData5', $customer->OtherData5) }}">
                 </div>
             </div>
         </div>
