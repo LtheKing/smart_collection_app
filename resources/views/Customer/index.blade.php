@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>Data Customer</h1>
-    <a href="" class="btn btn-info" id="btn_create">customer Baru</a>
+    <a href="" class="btn btn-info" id="btn_create">Customer Baru</a>
 
     {{-- EXPORT IMPORT SELECTION --}}
     <div class="mt-3">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="card-body">
-            <form action="" method="post" class="mb-3">
+            <form action="{{ route('customer_export') }}" method="post" class="mb-3">
                 @csrf
                 <input type="text" class="form-control mb-3 mt-3  " id="input_filter_bank_export" placeholder="Bank"
                     name="Bank">

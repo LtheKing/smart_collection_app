@@ -64,6 +64,39 @@ class UserController extends Controller
         return view('User.index');
     }
 
+    public function edit($id)
+    {
+        Artisan::call('cache:clear');
+        $user = User::find($id);
+        return view('User.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        $request->merge([
+            'password' => Hash::make($request->password)
+        ]);
+
+        $data = User::find($id);
+        $data->update($request->all());
+        return redirect()->route('user_index')->with('Success', 'Data User Berhasil Diubah');
+    }
+
+    public function show($id)
+    {
+        Artisan::call('cache:clear');
+        $user = User::find($id);
+        return view('User.detail', compact('user'));
+    }
+
     //api
     public function getAll()
     {

@@ -47,9 +47,13 @@ Route::middleware('usersession')->group(function() {
     Route::get('/customer/index', 'CustomerController@index')->name('customer_index');
     Route::get('/customer/detail/{id}', 'CustomerController@show')->name('customer_detail');
     Route::get('/customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
+    Route::put('/customer/update/{id}', 'CustomerController@update')->name('customer_update');
+    Route::post('/customer/export/excel', 'CustomerController@export')->name('customer_export');
 
     //User
     Route::get('/user/index', 'UserController@index')->name('user_index');
+    Route::get('/user/edit/{id}', 'UserController@edit')->name('user_edit');
+    Route::put('/user/update/{id}', 'UserController@update')->name('user_update');
 });
 
 

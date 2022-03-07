@@ -26,7 +26,7 @@
     <h1 class="h1">Edit Data Customer</h1>
     <a class="btn btn-secondary mb-3 mt-3" href="{{ route('customer_index') }}"> Kembali </a>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('customer_update', $customer->id) }}" method="post" enctype="multipart/form-data">
       @csrf
       @method('PUT')
 
@@ -168,7 +168,7 @@
 
                 <div class="mb-3" id="div_city">
                     <label for="inputcity" class="form-label">City</label>
-                    <input type="text" class="form-control" id="inputcity" name="city" value="{{ old('city', $customer->City) }}">
+                    <input type="text" class="form-control" id="inputcity" name="City" value="{{ old('city', $customer->City) }}">
                 </div>
             </div>
 
@@ -280,9 +280,9 @@
                     <input type="text" class="form-control" id="inputMotherName" name="MotherName" value="{{ old('MotherName', $customer->MotherName) }}">
                 </div>
 
-                <div class="mb-3" id="div_TypeCard">
-                    <label for="inputTypeCard" class="form-label">Type Card</label>
-                    <select name="TypeCard" id="inputTypeCard" class="form-control">
+                <div class="mb-3" id="div_Sex">
+                    <label for="inputSex" class="form-label">Sex</label>
+                    <select name="Sex" id="inputSex" class="form-control">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>

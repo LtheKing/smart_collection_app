@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use DB;
 use App\Models\Customer;
 use App\Models\Bank;
 use Artisan;
+use Schema;
 
 class CustomerController extends Controller
 {
@@ -17,6 +19,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $cust = DB::table('sm_customer')->get();
+        $column = Schema::getColumnListing($cust->attributesToArray());
+        dd($column);
         return view('Customer.index');
     }
 
@@ -77,18 +82,92 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'NumberCard' => 'required',
+            'Bank' => 'required',
+            'TypeCard' => 'required',
+            'NameCustomer' => 'required',
+            'PIC' => 'required',
+            'AssignmentDate' => 'required',
+            'ExpireDate' => 'required',
+            'DateOfBirth' => 'required',
+            'OpenDate' => 'required',
+            'WODate' => 'required',
+            'LastPayDate' => 'required',
+            'LastPayment' => 'required',
+            'LastTransactionDate' => 'required',
+            'LastTransactionNominal' => 'required',
+            'Limit' => 'required',
+            'Principal' => 'required',
+            'MinPay' => 'required',
+            'OSBalance' => 'required',
+            'Address1' => 'required',
+            'Address2',
+            'Address3',
+            'Address4',
+            'City' => 'required',
+            'OfficeName' => 'required',
+            'OfficeAddress1' => 'required',
+            'OfficeAddress2',
+            'OfficeAddress3',
+            'OfficeAddress4',
+
+            'Phone1' => 'required',
+            'Phone2',
+            'HomePhone1' => 'required',
+            'HomePhone2',
+            'OfficePhone1' => 'required',
+            'OfficePhone2',
+            'ECPhone1' => 'required',
+            'ECPhone2',
+            'OtherNumber',
+
+            'ECName' => 'required',
+            'ECName2',
+            'StatusEC' => 'required',
+            'StatusEC2',
+            'MotherName' => 'required',
+            'Sex' => 'required',
+            'Email' => 'required',
+
+            'VirtualAccount' => 'required',
+            'VirtualAccountName' => 'required',
+            'Komoditi' => 'required',
+            'KomoditiType' => 'required',
+            'Produsen' => 'required',
+            'Model' => 'required',
+            'LoanTerm' => 'required',
+            'InstallmentAlreadyPaid' => 'required',
+            'MonthlyPaymentNominal' => 'required', 
+
+            'DPD' => 'required',
+            'Bucket' => 'required',
+            'BillingNoPenalty' => 'required',
+            'DendaBelumDibayar' => 'required',
+            'LastVisitDate' => 'required',
+            'LastVisitResult' => 'required',
+            'LastReport' => 'required',
+            'LastVisitAddress' => 'required',
+            'OTSOffer' => 'required',
+            
+            'OtherData1',
+            'OtherData2',
+            'OtherData3',
+            'OtherData4',
+            'OtherData5',
+            'PermanentMessage'
+
+        ]);
+
+        $data = Customer::find($id);
+        $data->update($request->all());
+        return redirect()->route('customer_index')->with('Success', 'Data Customer Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function export(Request $request)
     {
-        //
+        return Excel::download(new CustomerExport($request->Bank,  
+                                                  $request->Field), 'Nasabah.xlsx');
     }
 
     //API

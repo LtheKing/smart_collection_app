@@ -50,6 +50,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('dc_index') }}">Desk Coll</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('user_index') }}">User</a>
+            </li>
           </ul>
         </div>
         <a class="btn btn-danger float-right" href="{{ route('logout') }}">Logout</a>

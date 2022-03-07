@@ -2,14 +2,14 @@
 
 namespace App\Exports;
 
+use App\Models\Customer;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use DB;
-use App\Models\Nasabah;
 
-class NasabahCustomExport implements FromCollection, WithHeadings
+class CustomerExport implements FromCollection, WithHeadings
 {
     use Exportable;
 
@@ -21,7 +21,7 @@ class NasabahCustomExport implements FromCollection, WithHeadings
     public function collection()
     {
         $field = explode(',', $this->field);
-        $data = DB::table('sm_nasabah')
+        $data = DB::table('sm_customer')
                     ->select($field)
                     ->where('Bank', $this->bank)
                     ->get();
