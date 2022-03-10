@@ -9,6 +9,8 @@ use App\Models\Customer;
 use App\Models\Bank;
 use Artisan;
 use Schema;
+use Excel;
+use App\Exports\CustomerExport;
 
 class CustomerController extends Controller
 {
@@ -19,10 +21,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $cust = DB::table('sm_customer')->get();
-        $column = Schema::getColumnListing($cust->attributesToArray());
-        dd($column);
-        return view('Customer.index');
+        $columns = DB::getSchemaBuilder()->getColumnListing('sm_customer');
+        return view('Customer.index', compact('columns'));
     }
 
     /**
@@ -166,8 +166,8 @@ class CustomerController extends Controller
 
     public function export(Request $request)
     {
-        return Excel::download(new CustomerExport($request->Bank,  
-                                                  $request->Field), 'Nasabah.xlsx');
+        return Excel::download(new CustomerExport($request->Field,  
+                                                  $request->Bank), 'Nasabah.xlsx');
     }
 
     //API

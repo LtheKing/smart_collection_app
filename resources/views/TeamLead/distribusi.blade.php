@@ -43,23 +43,23 @@
 
         <div class="row">
             <div class="col-9">
-                <table class="display table mb-3 mt-3" id="table_nasabah">
+                <table class="display table mb-3 mt-3" id="table_customer">
                     <thead class="table-borderless">
                         <th class="text-center">Nama</th>
-                        <th class="text-center">No Rekening</th>
-                        <th class="text-center">NIK</th>
-                        <th class="text-center">Nomor Telepon</th>
-                        <th class="text-center">Alamat</th>
+                        <th class="text-center">Bank</th>
+                        <th class="text-center">Tipe Kartu</th>
+                        <th class="text-center">PIC</th>
+                        <th class="text-center" width="15%">Nomor Telepon 1</th>
                         <th class="text-center">Email</th>
                         <th class="text-center col-action">Action</th>
                     </thead>
                     <tfoot>
                         <tr>
                             <th class="text-center">Nama</th>
-                            <th class="text-center">No Rekening</th>
-                            <th class="text-center">NIK</th>
-                            <th class="text-center">Nomor Telepon</th>
-                            <th class="text-center">Alamat</th>
+                            <th class="text-center">Bank</th>
+                            <th class="text-center">Tipe Kartu</th>
+                            <th class="text-center">PIC</th>
+                            <th class="text-center">Nomor Telepon 1</th>
                             <th class="text-center">Email</th>
                             <th class="text-center col-action">Action</th>
                         </tr>
@@ -67,9 +67,10 @@
                 </table>
             </div>
 
+            {{-- PILIH NASABAH --}}
             <div class="col-3" style="margin-top: 3cm;">
                 <button type="button" class="btn btn-danger mb-3" onclick="remove();">Hapus</button>
-                <select id="input_selected" class="form-control" size="15" onchange="setSelection()"></select>
+                <select id="input_selected" class="form-control" size="15" onchange="setSelection();"></select>
                 <input type="hidden" name="nasabahId" id="nasabahId">
                 <button class="btn btn-success mt-3">Simpan</button>
             </div>
@@ -78,22 +79,22 @@
 
     <script>
         $(document).ready(function() {
-            var table = $('#table_nasabah').DataTable({
-                "ajax": 'nasabah/array',
+            var table = $('#table_customer').DataTable({
+                "ajax": 'customer/array',
                 "columns": [{
-                        "data": "Nama"
+                        "data": "NameCustomer"
                     },
                     {
-                        "data": "NoRekening"
+                        "data": "Bank"
                     },
                     {
-                        "data": "NIK"
+                        "data": "TypeCard"
                     },
                     {
-                        "data": "NoTelepon"
+                        "data": "PIC"
                     },
                     {
-                        "data": "Alamat"
+                        "data": "Phone1"
                     },
                     {
                         "data": "Email"
@@ -108,7 +109,7 @@
                 }]
             });
 
-            $('#table_nasabah tbody').on('click', 'button', function() {
+            $('#table_customer tbody').on('click', 'button', function() {
                 //debugger;
                 var action = this.className;
                 var data = table.row($(this).parents('tr')).data();
@@ -121,7 +122,7 @@
             // debugger;
             const inputSelect = document.getElementById('input_selected');
             var option = document.createElement("option");
-            option.text = data.Nama;
+            option.text = data.NameCustomer;
             option.value = data.id;
 
             var arr = Array.apply(null, inputSelect);

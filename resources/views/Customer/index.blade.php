@@ -49,10 +49,34 @@
         </div>
 
         <div class="card-body">
-            <form action="{{ route('customer_export') }}" method="post" class="mb-3">
+            <form action="{{ route('customer_export') }}" method="post" class="mb-3" onsubmit="setSelection();">
                 @csrf
                 <input type="text" class="form-control mb-3 mt-3  " id="input_filter_bank_export" placeholder="Bank"
                     name="Bank">
+
+                {{-- PILIH FIELD --}}
+                <div class="content-export">
+                    <div class="content-export-item">
+                        <label for="select-field">Pilih Field</label>
+                        <select name="select_field" id="select-field" class="form-control">
+                            @foreach ($columns as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="content-export-item" style="text-align: center;">
+                        <button type="button" id="btn-select" class="btn btn-success" style="margin-bottom: 0.5cm;"
+                            onclick="selectData()">Pilih</button> <br />
+                        <button type="button" id="btn-remove" class="btn btn-danger" onclick="remove()">Hapus</button>
+                    </div>
+
+                    <div class="content-export-item">
+                        <label for="selected-field">Field Yang Dipilih</label>
+                        <select id="selected-field" class="form-control" size="15" onchange="setSelection()"></select>
+                        <input type="hidden" name="Field" id="Field">
+                    </div>
+                </div>
 
                 <button class="btn btn-warning mt-3">Export</button>
             </form>
@@ -214,6 +238,55 @@
                 document.getElementById('input_file_label').innerHTML = filename
             }
         }
+
+        function selectData() {
+            // debugger;
+            value = document.getElementById('select-field').value;
+            const inputSelect = document.getElementById('selected-field');
+            var option = document.createElement("option");
+            option.text = value;
+            option.value = value;
+
+            var arr = Array.apply(null, inputSelect);
+            var exist = arr.filter(x => x.value == value);
+
+            if (arr.length > 0 && exist.length > 0) {
+                alert('Data Sudah Dipilih !');
+                return;
+            }
+
+            inputSelect.appendChild(option);
+        }
+
+        function remove() {
+            // debugger;
+            const inputSelect = document.getElementById('selected-field');
+
+            if (inputSelect.selectedIndex == -1) {
+                alert('Pilih Data Terlebih Dahulu !');
+                return;
+            }
+
+            inputSelect.remove(inputSelect.selectedIndex);
+        }
+
+        function setSelection() {
+            // debugger;
+            const inputSelect = document.getElementById('selected-field');
+            var arr = Array.apply(null, inputSelect);
+            var Field = document.getElementById('Field');
+            if (arr.length > 0) {
+                // inputSelect[0].selected = true;
+                arr.forEach(function(x) {
+                    Field.value += x.value + ','
+                });
+            } else {
+                Field.value = '';
+            }
+
+            var jadi = Field.value.substr(0, Field.value.length - 1);
+            Field.value = jadi;
+        }
     </script>
 
     <style>
@@ -322,7 +395,7 @@
 
         .btnTable {
             /* display: block;
-          margin: auto; */
+                  margin: auto; */
             width: auto;
             display: inline-block;
             font-size: 12px;
@@ -330,6 +403,12 @@
 
         .col-action {
             width: 15%;
+        }
+
+        .content-export {
+            display: grid;
+            grid-template-columns: auto 5cm auto;
+            padding: 10px;
         }
 
         /* Change styles for cancel button and delete button on extra small screens */

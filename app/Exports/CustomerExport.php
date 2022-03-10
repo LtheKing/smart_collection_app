@@ -20,17 +20,43 @@ class CustomerExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $field = explode(',', $this->field);
-        $data = DB::table('sm_customer')
-                    ->select($field)
-                    ->where('Bank', $this->bank)
-                    ->get();
-        return $data;
+
+        // dd($this->field, $this->bank);
+        if(($this->field == null || $this->field == '') && ($this->bank != null || $this->bank != '')) {
+            $data = DB::table('sm_customer')
+                        ->where('Bank', $this->bank)
+                        ->get();
+            return $data;
+        } else if(($this->field != null || $this->field != '') && ($this->bank == null || $this->bank == '')) {
+            $field = explode(',', $this->field);
+            $data = DB::table('sm_customer')
+                        ->select($field)
+                        ->get();
+            return $data;
+        } else if($this->field == null && $this->bank == null) {
+            $data = DB::table('sm_customer')
+                        ->get();
+            return $data;
+        }        
+        else {
+            $field = explode(',', $this->field);
+            $data = DB::table('sm_customer')
+                        ->select($field)
+                        ->where('Bank', $this->bank)
+                        ->get();
+            return $data;
+        }
+
     }
 
     public function headings(): array
     {
-        return explode(',', $this->field);
+        if ($this->field != null || $this->field != '') {
+            return explode(',', $this->field);
+        }  else {
+            $columns = DB::getSchemaBuilder()->getColumnListing('sm_customer');
+            return $columns;
+        }
         // return ['Nama', 'NoRekening', 'NIK'];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nasabah;
+use App\Models\Customer;
 use App\Models\DeskColl;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\NasabahExport;
@@ -32,7 +33,7 @@ class TeamLeadController extends Controller
         ]);
 
         $nasabahId = explode(',', $request->nasabahId);
-        Nasabah::whereIn('id', $nasabahId)->update([
+        Customer::whereIn('id', $nasabahId)->update([
             'Deskcoll_id' => $request->deskCollId
         ]);
 
