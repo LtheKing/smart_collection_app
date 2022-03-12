@@ -32,7 +32,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('Customer.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

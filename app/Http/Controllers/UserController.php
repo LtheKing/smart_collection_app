@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('register');
+        return view('User.create');
     }
 
     public function store(Request $request)
@@ -51,13 +51,15 @@ class UserController extends Controller
             'role' => 'required',
             'username' => 'required',
         ]);
-
+        
         $request->merge([
             'password' => Hash::make($request->password)
         ]);
+        
+        dd($request->all());
 
         User::create($request->all());
-        return redirect()->route('login');
+        return redirect()->route('user_index');
     }
 
     public function index() {

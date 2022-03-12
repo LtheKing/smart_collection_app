@@ -8,7 +8,7 @@
 @section('content')
 
 <h1>Data User</h1>
-<a href="" class="btn btn-info mb-3" id="btn_create">User Baru</a>
+<a href="{{ route('user_create') }}" class="btn btn-info mb-3" id="btn_create">User Baru</a>
 
 {{-- MAIN TABLE --}}
 <table class="display table mb-3 mt-3" id="table_User">
