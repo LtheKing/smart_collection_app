@@ -86,6 +86,8 @@ class Customer extends Model
         'OtherData3',
         'OtherData4',
         'OtherData5',
-        'PermanentMessage'
+        'PermanentMessage',
+
+        'IsDeletedByAdmin',
     ];
 }

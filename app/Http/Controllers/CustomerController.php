@@ -11,6 +11,7 @@ use Artisan;
 use Schema;
 use Excel;
 use App\Exports\CustomerExport;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -174,6 +175,30 @@ class CustomerController extends Controller
 
     public function getAll()
     {
+        $session = Session::all();
+        $role = $session['role'];
+
+        switch ($role) {
+            case 'Super Admin':
+                # code...
+                break;
+            
+            case 'Admin':
+
+                break;
+
+            case 'Supervisor':
+
+                break;
+
+            case 'User':
+
+                break;
+            default:
+                # code...
+                break;
+        }
+
         $customers = DB::table('sm_customer')->get();
         $data = (object)[
             'data' => $customers
