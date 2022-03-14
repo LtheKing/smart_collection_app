@@ -38,6 +38,7 @@ Route::middleware('usersession')->group(function() {
     
     //TEAM LEAD
     Route::get('/teamlead/distribusi_kerjaan', 'TeamLeadController@distribusi')->name('tl_distribusi');
+    Route::get('/teamlead/set_supervisor', 'TeamLeadController@set_supervisor')->name('tl_set_supervisor');
     Route::post('/teamlead/distribusi_kerjaan/store', 'TeamLeadController@store')->name('tl_distribusi_store');
 
     //DESK COLL

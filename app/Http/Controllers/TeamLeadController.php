@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Nasabah;
 use App\Models\Customer;
 use App\Models\DeskColl;
+use App\Models\Supervisor;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\NasabahExport;
 use App\Imports\NasabahImport;
@@ -15,11 +16,11 @@ use Artisan;
 
 class TeamLeadController extends Controller
 {
+    // SET USER
     public function distribusi()
     {
         $dc = DeskColl::all();
-        $n = Nasabah::all();
-        return view('TeamLead.distribusi', compact('dc', 'n'));
+        return view('TeamLead.distribusi', compact('dc'));
     }
 
     public function store(Request $request)
@@ -38,5 +39,12 @@ class TeamLeadController extends Controller
         ]);
 
         return back()->with('Success', 'Distribusi Pekerjaan Telah Berhasil');
+    }
+
+    //set SUPERVISOR
+    public function set_supervisor()
+    {
+        $dc = Supervisor::all();
+        return view('TeamLead.deskcoll', compact('dc'));
     }
 }

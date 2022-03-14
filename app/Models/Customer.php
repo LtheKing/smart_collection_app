@@ -89,5 +89,6 @@ class Customer extends Model
         'PermanentMessage',
 
         'IsDeletedByAdmin',
+        'Deskcoll_id',
     ];
 }

@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeskColl extends Model
+class Supervisor extends Model
 {
     use HasFactory;
 
-    protected $table = 'sm_deskcoll';
+    protected $table = 'sm_supervisor';
     public $timestamps = false;
     protected $fillable = [
         'Nama',
         'NoTelepon',
         'Alamat',
         'Email',
-        'NIP',
-        'Supervisor_id'
+        'NIP'
     ];
 }
