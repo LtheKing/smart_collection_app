@@ -40,6 +40,7 @@ Route::middleware('usersession')->group(function() {
     Route::get('/teamlead/distribusi_kerjaan', 'TeamLeadController@distribusi')->name('tl_distribusi');
     Route::get('/teamlead/set_supervisor', 'TeamLeadController@set_supervisor')->name('tl_set_supervisor');
     Route::post('/teamlead/distribusi_kerjaan/store', 'TeamLeadController@store')->name('tl_distribusi_store');
+    Route::post('/teamlead/distribusi_kerjaan/update_supervisor_id', 'TeamLeadController@update_supervisor_id')->name('tl_update_supervisor_id');
 
     //DESK COLL
     Route::get('/deskcoll/index', 'DeskCollController@index')->name('dc_index');
@@ -75,7 +76,7 @@ Route::get('/logout', function(){
 Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah_array');
 Route::get('/teamlead/nasabah/array', 'NasabahController@getNasabahArray')->name('teamlead_array');
 Route::get('/teamlead/customer/array', 'CustomerController@getAll')->name('customer_array');
-Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
+Route::get('/teamlead/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::get('/customer/array', 'CustomerController@getAll')->name('customer_array');
 Route::get('/user/array', 'UserController@getAll')->name('user_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');

@@ -31,9 +31,10 @@
         </div>
     @endif
 
-    <form action="" id="form1" method="post" onsubmit="setSelection();">
+    <form action="{{ route('tl_update_supervisor_id') }}" id="form1" method="post" onsubmit="setSelection();">
         @csrf
         <div class="mb-3" id="div_supervisor">
+            <span for="input_supervisor_id" class="label mr-2">Supervisor :</span>
             <select name="Supervisor_id" id="input_supervisor_id" class="form-control-sm mb-3 mt-3">
                 @foreach ($dc as $item)
                     <option value="{{ $item->id }}">{{ $item->Nama }}</option>
@@ -84,6 +85,9 @@
                     },
                     {
                         "data": "NoTelepon"
+                    },
+                    {
+                        "data": "Alamat"
                     },
                     {
                         "data": "Email"

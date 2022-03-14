@@ -47,4 +47,22 @@ class TeamLeadController extends Controller
         $dc = Supervisor::all();
         return view('TeamLead.deskcoll', compact('dc'));
     }
+
+    public function update_supervisor_id(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'Supervisor_id' => 'required',
+            'Deskcoll_id' => 'required'
+        ], [
+            'Deskcoll_id.required' => 'Pilih User terlebih Dahulu !'
+        ]);
+
+        $deskcollId = explode(',', $request->Deskcoll_id);
+        DeskColl::whereIn('id', $deskcollId)->update([
+            'Supervisor_id' => $request->Supervisor_id
+        ]);
+
+        return back()->with('Success', 'Pemilihan User Telah Berhasil');
+    }
 }
