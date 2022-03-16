@@ -54,8 +54,13 @@
                 Distribusi Pekerjaan
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('tl_set_supervisor') }}" id="dropdown_supervisor">Supervisor</a>
+                @if(session()->get('role') == 'User')
                 <a class="dropdown-item" href="{{ route('tl_distribusi') }}" id="dropdown_deskcoll">User</a>
+                @endif
+
+                @if(session()->get('role') == 'Supervisor')
+                <a class="dropdown-item" href="{{ route('tl_set_supervisor') }}" id="dropdown_supervisor">Supervisor</a>
+                @endif
               </div>
             </li>
 
