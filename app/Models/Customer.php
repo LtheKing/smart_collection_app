@@ -77,6 +77,7 @@ class Customer extends Model
         'DendaBelumDibayar',
         'LastVisitDate',
         'LastVisitResult',
+        'Report',
         'LastReport',
         'LastVisitAddress',
         'OTSOffer',
