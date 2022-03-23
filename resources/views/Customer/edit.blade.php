@@ -131,7 +131,7 @@
                         </div>
 
                         <div class="mb-3" id="div_LastReport">
-                            <label for="inputLastReport" class="form-label">LastReport</label>
+                            <label for="inputLastReport" class="form-label">Last Report</label>
                             <textarea class="form-control" id="inputLastReport"
                                 name="LastReport"> {{ old('LastReport', $customer->LastReport) }} </textarea>
                         </div>

@@ -22,6 +22,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $session = Session::all();
+        // dd($session);
         $columns = DB::getSchemaBuilder()->getColumnListing('sm_customer');
         return view('Customer.index', compact('columns'));
     }
@@ -83,81 +85,100 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $request->validate([
+        //     'NumberCard' => 'required',
+        //     'Bank' => 'required',
+        //     'TypeCard' => 'required',
+        //     'NameCustomer' => 'required',
+        //     'PIC' => 'required',
+        //     'AssignmentDate' => 'required',
+        //     'ExpireDate' => 'required',
+        //     'DateOfBirth' => 'required',
+        //     'OpenDate' => 'required',
+        //     'WODate' => 'required',
+        //     'LastPayDate' => 'required',
+        //     'LastPayment' => 'required',
+        //     'LastTransactionDate' => 'required',
+        //     'LastTransactionNominal' => 'required',
+        //     'Limit' => 'required',
+        //     'Principal' => 'required',
+        //     'MinPay' => 'required',
+        //     'OSBalance' => 'required',
+        //     'Address1' => 'required',
+        //     'Address2',
+        //     'Address3',
+        //     'Address4',
+        //     'City' => 'required',
+        //     'OfficeName' => 'required',
+        //     'OfficeAddress1' => 'required',
+        //     'OfficeAddress2',
+        //     'OfficeAddress3',
+        //     'OfficeAddress4',
+
+        //     'Phone1' => 'required',
+        //     'Phone2',
+        //     'HomePhone1' => 'required',
+        //     'HomePhone2',
+        //     'OfficePhone1' => 'required',
+        //     'OfficePhone2',
+        //     'ECPhone1' => 'required',
+        //     'ECPhone2',
+        //     'OtherNumber',
+
+        //     'ECName' => 'required',
+        //     'ECName2',
+        //     'StatusEC' => 'required',
+        //     'StatusEC2',
+        //     'MotherName' => 'required',
+        //     'Sex' => 'required',
+        //     'Email' => 'required',
+
+        //     'VirtualAccount' => 'required',
+        //     'VirtualAccountName' => 'required',
+        //     'Komoditi' => 'required',
+        //     'KomoditiType' => 'required',
+        //     'Produsen' => 'required',
+        //     'Model' => 'required',
+        //     'LoanTerm' => 'required',
+        //     'InstallmentAlreadyPaid' => 'required',
+        //     'MonthlyPaymentNominal' => 'required', 
+
+        //     'DPD' => 'required',
+        //     'Bucket' => 'required',
+        //     'BillingNoPenalty' => 'required',
+        //     'DendaBelumDibayar' => 'required',
+        //     'LastVisitDate' => 'required',
+        //     'LastVisitResult' => 'required',
+        //     'LastReport' => 'required',
+        //     'LastVisitAddress' => 'required',
+        //     'OTSOffer' => 'required',
+
+        //     'OtherData1',
+        //     'OtherData2',
+        //     'OtherData3',
+        //     'OtherData4',
+        //     'OtherData5',
+        //     'PermanentMessage'
+
+        // ]);
+
         $request->validate([
             'NumberCard' => 'required',
-            'Bank' => 'required',
-            'TypeCard' => 'required',
             'NameCustomer' => 'required',
-            'PIC' => 'required',
-            'AssignmentDate' => 'required',
-            'ExpireDate' => 'required',
-            'DateOfBirth' => 'required',
-            'OpenDate' => 'required',
-            'WODate' => 'required',
+            'NameCustomer' => 'required',
+            'Limit' => 'required',
+            'OSBalance' => 'required',
+            'Phone1' => 'required',
+            'Address1' => 'required',
+            'HomePhone1' => 'required',
+            'OfficeAddress1' => 'required',
+            'ECName' => 'required',
+            'ECPhone1' => 'required',
             'LastPayDate' => 'required',
             'LastPayment' => 'required',
-            'LastTransactionDate' => 'required',
-            'LastTransactionNominal' => 'required',
-            'Limit' => 'required',
-            'Principal' => 'required',
-            'MinPay' => 'required',
-            'OSBalance' => 'required',
-            'Address1' => 'required',
-            'Address2',
-            'Address3',
-            'Address4',
-            'City' => 'required',
-            'OfficeName' => 'required',
-            'OfficeAddress1' => 'required',
-            'OfficeAddress2',
-            'OfficeAddress3',
-            'OfficeAddress4',
-
-            'Phone1' => 'required',
-            'Phone2',
-            'HomePhone1' => 'required',
-            'HomePhone2',
-            'OfficePhone1' => 'required',
-            'OfficePhone2',
-            'ECPhone1' => 'required',
-            'ECPhone2',
-            'OtherNumber',
-
-            'ECName' => 'required',
-            'ECName2',
-            'StatusEC' => 'required',
-            'StatusEC2',
-            'MotherName' => 'required',
-            'Sex' => 'required',
-            'Email' => 'required',
-
-            'VirtualAccount' => 'required',
-            'VirtualAccountName' => 'required',
-            'Komoditi' => 'required',
-            'KomoditiType' => 'required',
-            'Produsen' => 'required',
-            'Model' => 'required',
-            'LoanTerm' => 'required',
-            'InstallmentAlreadyPaid' => 'required',
-            'MonthlyPaymentNominal' => 'required', 
-
-            'DPD' => 'required',
-            'Bucket' => 'required',
-            'BillingNoPenalty' => 'required',
-            'DendaBelumDibayar' => 'required',
-            'LastVisitDate' => 'required',
-            'LastVisitResult' => 'required',
+            'PermanentMessage' => 'required',
             'LastReport' => 'required',
-            'LastVisitAddress' => 'required',
-            'OTSOffer' => 'required',
-            
-            'OtherData1',
-            'OtherData2',
-            'OtherData3',
-            'OtherData4',
-            'OtherData5',
-            'PermanentMessage'
-
+            'Report' => 'required',
         ]);
 
         $data = Customer::find($id);
@@ -167,8 +188,10 @@ class CustomerController extends Controller
 
     public function export(Request $request)
     {
-        return Excel::download(new CustomerExport($request->Field,  
-                                                  $request->Bank), 'Nasabah.xlsx');
+        return Excel::download(new CustomerExport(
+            $request->Field,
+            $request->Bank
+        ), 'Nasabah.xlsx');
     }
 
     //API
@@ -177,18 +200,36 @@ class CustomerController extends Controller
     {
         $session = Session::all();
         $role = $session['role'];
+        $username = $session['username'];
+
+        // $role = 'Supervisor';
+        // $username = 'spv_mutiara';
+
+        $customers;
+        $data;
+
+        $user = DB::table('users')
+        ->where('role', $role)
+        ->where('username', $username)
+        ->get();
 
         switch ($role) {
             case 'Super Admin':
-                # code...
+                $customers = DB::table('sm_customer')->get();
                 break;
-            
-            case 'Admin':
 
+            case 'Admin':
+                $customers = DB::table('sm_customer')->get();
                 break;
 
             case 'Supervisor':
-
+                //JANGAN  LUPA PAKE KONDISI KALO NULL
+                $deskcoll = DB::table('sm_deskcoll')
+                            ->where('Supervisor_id', $user[0]->id)
+                            ->get();
+                $customers = DB::table('sm_customer')
+                            ->where('Deskcoll_id', $deskcoll[0]->id)
+                            ->get();
                 break;
 
             case 'User':
@@ -199,7 +240,6 @@ class CustomerController extends Controller
                 break;
         }
 
-        $customers = DB::table('sm_customer')->get();
         $data = (object)[
             'data' => $customers
         ];
@@ -212,5 +252,18 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customer->delete();
         return response('Data Deleted', 200);
+    }
+
+    public function select_by_role($role, $username) {
+        $customers = DB::table('users')
+                    ->where('role', $role)
+                    ->where('username', $username)
+                    ->get();
+        
+        $data = (object)[
+            'data' => $customers
+        ];
+
+        return $customers[0]->id;
     }
 }
