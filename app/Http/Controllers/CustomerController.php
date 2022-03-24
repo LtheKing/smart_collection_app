@@ -227,16 +227,23 @@ class CustomerController extends Controller
                 $deskcoll = DB::table('sm_deskcoll')
                             ->where('Supervisor_id', $user[0]->id)
                             ->get();
+
+                if (count($deskcoll) == 0) {
+                    return $deskcoll;
+                }
+
                 $customers = DB::table('sm_customer')
                             ->where('Deskcoll_id', $deskcoll[0]->id)
                             ->get();
                 break;
 
             case 'User':
-
+                $customers = DB::table('sm_customer')
+                            ->where('Deskcoll_id', $user[0]->id)
+                            ->get();
                 break;
             default:
-                # code...
+                $customers = DB::table('sm_customer')->get();
                 break;
         }
 

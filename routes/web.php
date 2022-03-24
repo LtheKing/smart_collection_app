@@ -77,6 +77,7 @@ Route::get('/nasabah/array', 'NasabahController@getNasabahArray')->name('nasabah
 Route::get('/teamlead/nasabah/array', 'NasabahController@getNasabahArray')->name('teamlead_array');
 Route::get('/teamlead/customer/array', 'CustomerController@getAll')->name('customer_array');
 Route::get('/teamlead/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
+Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::get('/customer/array', 'CustomerController@getAll')->name('customer_array');
 Route::get('/user/array', 'UserController@getAll')->name('user_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
