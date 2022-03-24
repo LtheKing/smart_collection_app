@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-body">
-            <form action="" method="POST" enctype="multipart/form-data" class="mb-3">
+            <form action="{{ route('customer_import') }}" method="POST" enctype="multipart/form-data" class="mb-3">
                 @csrf
                 <div class="input-group mb-3 mt-3">
                     <div class="input-group-prepend">

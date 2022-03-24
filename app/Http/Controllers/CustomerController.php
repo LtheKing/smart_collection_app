@@ -11,6 +11,7 @@ use Artisan;
 use Schema;
 use Excel;
 use App\Exports\CustomerExport;
+use App\Imports\CustomerImport;
 use Session;
 
 class CustomerController extends Controller
@@ -192,6 +193,14 @@ class CustomerController extends Controller
             $request->Field,
             $request->Bank
         ), 'Nasabah.xlsx');
+    }
+
+    public function import(Request $request) 
+    {
+        // dd($request->all());
+        Excel::import(new CustomerImport, $request->file('file'));
+           
+        return back();
     }
 
     //API
