@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use App\Models\Customer;
+use App\Models\Supervisor;
+use App\Models\Deskcoll;
 use App\Models\Bank;
 use Artisan;
 
@@ -39,7 +41,11 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('User.create');
+        $users = User::all();
+        $admins = User::where('role', 'Admin')->get();
+        $supervisors = User::where('role', 'Supervisor')->get();
+        // dd($admins);
+        return view('User.create', compact('users', 'admins', 'supervisors'));
     }
 
     public function store(Request $request)
@@ -51,14 +57,44 @@ class UserController extends Controller
             'role' => 'required',
             'username' => 'required',
         ]);
+
+        if ($request->role == 'Supervisor') {
+            $request->validate(['admin_id' => 'required']);
+        }
+
+        if ($request->role == 'User') {
+            $request->validate(['supervisor_id' => 'required']);
+        }
         
         $request->merge([
             'password' => Hash::make($request->password)
         ]);
         
-        dd($request->all());
+        // dd($request->all());
 
         User::create($request->all());
+
+        if ($request->role == 'Supervisor') {
+            Supervisor::create([
+                'Nama' => $request->name,
+                'NoTelepon' => '-',
+                'Alamat' => '-',
+                'Email' => $request->email,
+                'NIP' => '-',
+            ]);
+        }
+
+        if ($request->role == 'User') {
+            Deskcoll::create([
+                'Nama' => $request->name,
+                'NoTelepon' => '-',
+                'Alamat' => '-',
+                'Email' => $request->email,
+                'NIP' => '-',
+                'Supervisor_id' => '-',
+            ]);
+        }
+
         return redirect()->route('user_index');
     }
 

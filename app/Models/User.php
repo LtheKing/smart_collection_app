@@ -15,6 +15,11 @@ class User extends Model
         'email',
         'password',
         'role',
-        'username'
+        'username',
+        'alamat',
+        'nip',
+        'no_telepon',
+        'supervisor_id',
+        'admin_id'
     ];
 }

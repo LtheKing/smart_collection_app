@@ -34,6 +34,7 @@
     <form action="{{ route('tl_distribusi_store') }}" id="form1" method="post" onsubmit="setSelection();">
         @csrf
         <div class="mb-3" id="div_deskcoll">
+            <label for="">PIC :</label>
             <select name="deskCollId" id="input_desk_coll" class="form-control-sm mb-3 mt-3">
                 @foreach ($dc as $item)
                     <option value="{{ $item->id }}">{{ $item->Nama }}</option>

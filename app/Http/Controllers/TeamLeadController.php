@@ -7,6 +7,7 @@ use App\Models\Nasabah;
 use App\Models\Customer;
 use App\Models\DeskColl;
 use App\Models\Supervisor;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\NasabahExport;
 use App\Imports\NasabahImport;
@@ -19,7 +20,7 @@ class TeamLeadController extends Controller
     // SET USER
     public function distribusi()
     {
-        $dc = DeskColl::all();
+        $dc = User::where('role', 'User')->get();
         return view('TeamLead.distribusi', compact('dc'));
     }
 
@@ -44,7 +45,7 @@ class TeamLeadController extends Controller
     //set SUPERVISOR
     public function set_supervisor()
     {
-        $dc = Supervisor::all();
+        $dc = User::where('role', 'Supervisor')->get();
         return view('TeamLead.deskcoll', compact('dc'));
     }
 

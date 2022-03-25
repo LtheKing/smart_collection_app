@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>Data Customer</h1>
-    <a href="" class="btn btn-info" id="btn_create">Customer Baru</a>
+    {{-- <a href="" class="btn btn-info" id="btn_create">Customer Baru</a> --}}
 
     {{-- EXPORT IMPORT SELECTION --}}
     <div class="mt-3">
