@@ -34,9 +34,13 @@ class TeamLeadController extends Controller
             'nasabahId.required' => 'Pilih Nasabah terlebih Dahulu !'
         ]);
 
+        $user_name = DB::table('users')->select('name')
+                                       ->where('id', $request->deskCollId)->get();
+
         $nasabahId = explode(',', $request->nasabahId);
         Customer::whereIn('id', $nasabahId)->update([
-            'Deskcoll_id' => $request->deskCollId
+            'Deskcoll_id' => $request->deskCollId,
+            'PIC' => $user_name[0]->name
         ]);
 
         return back()->with('Success', 'Distribusi Pekerjaan Telah Berhasil');
@@ -60,8 +64,9 @@ class TeamLeadController extends Controller
         ]);
 
         $deskcollId = explode(',', $request->Deskcoll_id);
-        DeskColl::whereIn('id', $deskcollId)->update([
-            'Supervisor_id' => $request->Supervisor_id
+
+        User::whereIn('id', $deskcollId)->update([
+            'supervisor_id' => $request->Supervisor_id
         ]);
 
         return back()->with('Success', 'Pemilihan User Telah Berhasil');

@@ -37,7 +37,7 @@
             <span for="input_supervisor_id" class="label mr-2">Supervisor :</span>
             <select name="Supervisor_id" id="input_supervisor_id" class="form-control-sm mb-3 mt-3">
                 @foreach ($dc as $item)
-                    <option value="{{ $item->id }}">{{ $item->Nama }}</option>
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -81,19 +81,19 @@
             var table = $('#table_deskcoll').DataTable({
                 "ajax": 'deskcoll/array',
                 "columns": [{
-                        "data": "Nama"
+                        "data": "name"
                     },
                     {
-                        "data": "NoTelepon"
+                        "data": "no_telepon"
                     },
                     {
-                        "data": "Alamat"
+                        "data": "alamat"
                     },
                     {
-                        "data": "Email"
+                        "data": "email"
                     },
                     {
-                        "data": "NIP"
+                        "data": "nip"
                     },
                     {
                         "defaultContent": "<button class='btn btn-secondary btnSelect btnTable btn-sm' type='button'>Select</button>"
@@ -118,7 +118,7 @@
             // debugger;
             const inputSelect = document.getElementById('input_selected');
             var option = document.createElement("option");
-            option.text = data.Nama;
+            option.text = data.name;
             option.value = data.id;
 
             var arr = Array.apply(null, inputSelect);

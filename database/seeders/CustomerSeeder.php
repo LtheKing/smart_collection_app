@@ -39,7 +39,7 @@ class CustomerSeeder extends Seeder
                     'PLATINUM MASTER',
                 ]),
                 'NameCustomer' => $faker->name,
-                'PIC' => $faker->name,
+                'PIC' => '-',
                 'AssignmentDate' => $faker->date,
                 'ExpireDate' => $faker->date,
                 'DateOfBirth' => $faker->date,

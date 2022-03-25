@@ -228,13 +228,13 @@ class CustomerController extends Controller
                 break;
 
             case 'Admin':
-                $customers = DB::table('sm_customer')->get();
+                $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')->get();
                 break;
 
             case 'Supervisor':
                 //JANGAN  LUPA PAKE KONDISI KALO NULL
-                $deskcoll = DB::table('sm_deskcoll')
-                            ->where('Supervisor_id', $user[0]->id)
+                $deskcoll = DB::table('users')
+                            ->where('supervisor_id', $user[0]->id)
                             ->get();
 
                 if (count($deskcoll) == 0) {
@@ -265,6 +265,17 @@ class CustomerController extends Controller
 
     public function api_delete($id)
     {
+        $session = Session::all();
+        $role = $session['role'];
+
+        if ($role == 'Admin') {
+            Customer::where('id', $id)->update([
+                'IsDeletedByAdmin' => 1
+            ]);
+            
+            return response('Data Deleted', 200);
+        }
+
         $customer = Customer::find($id);
         $customer->delete();
         return response('Data Deleted', 200);

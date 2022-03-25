@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeskColl;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
@@ -89,7 +90,8 @@ class DeskCollController extends Controller
     //API
     public function getData()
     {
-        $dc = DB::table('sm_deskcoll')->get();
+        // $dc = DB::table('sm_deskcoll')->get();
+        $dc = User::where('role', 'User')->get();
         $data = (object)[
             'data' => $dc
         ];

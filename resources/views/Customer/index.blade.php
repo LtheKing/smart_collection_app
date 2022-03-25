@@ -8,6 +8,10 @@
     <h1>Data Customer</h1>
     {{-- <a href="" class="btn btn-info" id="btn_create">Customer Baru</a> --}}
 
+    <div id="div_role_value" hidden=true>
+        <input type="text" id="role_value" value="{{ session('role') }}">
+    </div>
+
     {{-- EXPORT IMPORT SELECTION --}}
     <div class="mt-3">
         <label for="action">Import / Export :</label>
@@ -109,6 +113,17 @@
     </table>
 
     {{-- MODAL --}}
+    @if(session('role') == 'Supervisor' || session('role') == 'User')
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">×</span>
+        <form class="modal-content" action="/action_page.php">
+            <div class="container">
+                <h1>Anda tidak bisa menghapus data customer !</h1>
+            </div>
+        </form>
+    </div>
+    @else
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close"
             title="Close Modal">×</span>
@@ -116,17 +131,18 @@
             <div class="container">
                 <h1>Hapus Data customer</h1>
                 <p>Anda Yakin Menghapus Data customer ini ?</p>
-
+                
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn btnModal" id="btnCancel">Cancel</button>
+                    class="cancelbtn btnModal" id="btnCancel">Cancel</button>
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="deletebtn btnModal" id="btnYes">Delete</button>
+                    class="deletebtn btnModal" id="btnYes">Delete</button>
                 </div>
             </div>
         </form>
     </div>
-
+    @endif
+    
     <script>
         var localhost = window.origin + '/';
         $(document).ready(function() {
@@ -188,6 +204,12 @@
         });
 
         async function deleteRecord(id) {
+            let role = document.getElementById('role_value').value;
+            if (role == 'Supervisor' || role == 'User') {
+                alert('Anda tidak bisa menghapus data customer !');
+                return;
+            }
+            
             token = await getToken();
             const response = await fetch(localhost + "api/customer/delete/" + id, {
                 method: 'DELETE',

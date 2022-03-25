@@ -37,7 +37,7 @@
             <label for="">PIC :</label>
             <select name="deskCollId" id="input_desk_coll" class="form-control-sm mb-3 mt-3">
                 @foreach ($dc as $item)
-                    <option value="{{ $item->id }}">{{ $item->Nama }}</option>
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
         </div>
