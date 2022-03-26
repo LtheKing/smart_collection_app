@@ -13,7 +13,7 @@
     </div>
 
     {{-- EXPORT IMPORT SELECTION --}}
-    <div class="mt-3">
+    <div class="mt-3 div-import">
         <label for="action">Import / Export :</label>
         <select name="action" class="form-control" id="select_action" onchange="actionChange(this)">
             <option value="Import" selected>Import</option>
@@ -22,13 +22,14 @@
     </div>
 
     {{-- IMPORT --}}
-    <div class="card mt-3 mb-3" id="container_import">
+    <div class="card mt-3 mb-3 div-import" id="container_import">
         <div class="card-header">
             Import Section
         </div>
 
         <div class="card-body">
-            <form action="{{ route('customer_import') }}" method="POST" enctype="multipart/form-data" class="mb-3">
+            <form action="{{ route('customer_import') }}" method="POST" enctype="multipart/form-data"
+                class="mb-3">
                 @csrf
                 <div class="input-group mb-3 mt-3">
                     <div class="input-group-prepend">
@@ -47,7 +48,7 @@
     </div>
 
     {{-- EXPORT --}}
-    <div class="card mt-3 mb-3" id="container_export" hidden=true>
+    <div class="card mt-3 mb-3 div-export" id="container_export" hidden=true>
         <div class="card-header">
             Export Section
         </div>
@@ -113,17 +114,6 @@
     </table>
 
     {{-- MODAL --}}
-    @if(session('role') == 'Supervisor' || session('role') == 'User')
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close"
-            title="Close Modal">×</span>
-        <form class="modal-content" action="/action_page.php">
-            <div class="container">
-                <h1>Anda tidak bisa menghapus data customer !</h1>
-            </div>
-        </form>
-    </div>
-    @else
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close"
             title="Close Modal">×</span>
@@ -131,77 +121,140 @@
             <div class="container">
                 <h1>Hapus Data customer</h1>
                 <p>Anda Yakin Menghapus Data customer ini ?</p>
-                
+
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                    class="cancelbtn btnModal" id="btnCancel">Cancel</button>
+                        class="cancelbtn btnModal" id="btnCancel">Cancel</button>
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                    class="deletebtn btnModal" id="btnYes">Delete</button>
+                        class="deletebtn btnModal" id="btnYes">Delete</button>
                 </div>
             </div>
         </form>
     </div>
-    @endif
-    
+
     <script>
+        window.onload = roleSetting();
         var localhost = window.origin + '/';
-        $(document).ready(function() {
-            var table = $('#table_customer').DataTable({
-                "ajax": 'array',
-                "columns": [{
-                        "data": "NameCustomer"
-                    },
-                    {
-                        "data": "Bank"
-                    },
-                    {
-                        "data": "TypeCard"
-                    },
-                    {
-                        "data": "PIC"
-                    },
-                    {
-                        "data": "Phone1"
-                    },
-                    {
-                        "data": "Email"
-                    },
-                    {
-                        "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
-                            "&nbsp;&nbsp;" +
-                            "<button class='btn btn-secondary btnDetail btnTable btn-sm' type='button'>Detail</button>" +
-                            "&nbsp;&nbsp;" +
-                            "<button class='btn btn-danger btnDelete btnTable btn-sm' type='button'>Delete</button>"
+
+        function renderTableAdmin() {
+            $(document).ready(function() {
+                var table = $('#table_customer').DataTable({
+                    "ajax": 'array',
+                    "columns": [{
+                            "data": "NameCustomer"
+                        },
+                        {
+                            "data": "Bank"
+                        },
+                        {
+                            "data": "TypeCard"
+                        },
+                        {
+                            "data": "PIC"
+                        },
+                        {
+                            "data": "Phone1"
+                        },
+                        {
+                            "data": "Email"
+                        },
+                        {
+                            "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
+                                "&nbsp;&nbsp;" +
+                                "<button class='btn btn-secondary btnDetail btnTable btn-sm' type='button'>Detail</button>" +
+                                "&nbsp;&nbsp;" +
+                                "<button class='btn btn-danger btnDelete btnTable btn-sm' type='button'>Delete</button>"
+                        }
+                    ],
+                    columnDefs: [{
+                        "defaultContent": "-",
+                        "targets": "_all"
+                    }]
+                });
+
+                $('#table_customer tbody').on('click', 'button', function() {
+                    //debugger;
+                    var action = this.className;
+                    var data = table.row($(this).parents('tr')).data();
+
+                    if (action.includes('btnEdit')) {
+                        window.location.href = localhost + 'customer/edit/' + data.id;
                     }
-                ],
-                columnDefs: [{
-                    "defaultContent": "-",
-                    "targets": "_all"
-                }]
+
+                    if (action.includes('btnDelete')) {
+                        document.getElementById('id01').style.display = 'block'
+                        $('#btnYes').on('click', function() {
+                            deleteRecord(data.id);
+                            alert('Data customer Berhasil Dihapus');
+                        })
+                    }
+
+                    if (action.includes('btnDetail')) {
+                        window.location.href = localhost + 'customer/detail/' + data.id;
+                    }
+                });
             });
+        }
 
-            $('#table_customer tbody').on('click', 'button', function() {
-                //debugger;
-                var action = this.className;
-                var data = table.row($(this).parents('tr')).data();
+        function renderTableUser() {
+            $(document).ready(function() {
+                var table = $('#table_customer').DataTable({
+                    "ajax": 'array',
+                    "columns": [{
+                            "data": "NameCustomer"
+                        },
+                        {
+                            "data": "Bank"
+                        },
+                        {
+                            "data": "TypeCard"
+                        },
+                        {
+                            "data": "PIC"
+                        },
+                        {
+                            "data": "Phone1"
+                        },
+                        {
+                            "data": "Email"
+                        },
+                        {
+                            "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
+                                "&nbsp;&nbsp;" +
+                                "<button class='btn btn-secondary btnDetail btnTable btn-sm' type='button'>Detail</button>" +
+                                "&nbsp;&nbsp;" +
+                                "<button class='btn btn-danger btnDelete btnTable btn-sm' type='button' hidden=true>Delete</button>"
+                        }
+                    ],
+                    columnDefs: [{
+                        "defaultContent": "-",
+                        "targets": "_all"
+                    }]
+                });
 
-                if (action.includes('btnEdit')) {
-                    window.location.href = localhost + 'customer/edit/' + data.id;
-                }
+                $('#table_customer tbody').on('click', 'button', function() {
+                    //debugger;
+                    var action = this.className;
+                    var data = table.row($(this).parents('tr')).data();
 
-                if (action.includes('btnDelete')) {
-                    document.getElementById('id01').style.display = 'block'
-                    $('#btnYes').on('click', function() {
-                        deleteRecord(data.id);
-                        alert('Data customer Berhasil Dihapus');
-                    })
-                }
+                    if (action.includes('btnEdit')) {
+                        window.location.href = localhost + 'customer/edit/' + data.id;
+                    }
 
-                if (action.includes('btnDetail')) {
-                    window.location.href = localhost + 'customer/detail/' + data.id;
-                }
+                    if (action.includes('btnDelete')) {
+                        document.getElementById('id01').style.display = 'block'
+                        $('#btnYes').on('click', function() {
+                            deleteRecord(data.id);
+                            alert('Data customer Berhasil Dihapus');
+                        })
+                    }
+
+                    if (action.includes('btnDetail')) {
+                        window.location.href = localhost + 'customer/detail/' + data.id;
+                    }
+                });
             });
-        });
+        }
 
         async function deleteRecord(id) {
             let role = document.getElementById('role_value').value;
@@ -209,7 +262,7 @@
                 alert('Anda tidak bisa menghapus data customer !');
                 return;
             }
-            
+
             token = await getToken();
             const response = await fetch(localhost + "api/customer/delete/" + id, {
                 method: 'DELETE',
@@ -308,6 +361,22 @@
 
             var jadi = Field.value.substr(0, Field.value.length - 1);
             Field.value = jadi;
+        }
+
+        function roleSetting() {
+            let role = document.getElementById('role_value').value;
+            let div_import = document.getElementsByClassName('div-import');
+            let div_export = document.getElementsByClassName('div-export');
+
+            if (role == 'Supervisor' || role == 'User') {
+                div_export.hidden = true;
+                div_import[0].hidden = true;
+                div_import[1].hidden = true;
+
+                renderTableUser();
+            } else {
+                renderTableAdmin();
+            }
         }
     </script>
 
@@ -417,7 +486,7 @@
 
         .btnTable {
             /* display: block;
-                  margin: auto; */
+                              margin: auto; */
             width: auto;
             display: inline-block;
             font-size: 12px;

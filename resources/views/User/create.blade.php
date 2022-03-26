@@ -26,6 +26,10 @@
     <h1 class="h1">User Baru</h1>
     <a class="btn btn-secondary mb-3 mt-3" href="{{ route('user_index') }}"> Kembali </a>
 
+    <div id="div_role_value" hidden=true>
+        <input type="text" id="role_value" value="{{ session('role') }}">
+    </div>
+
     <form action="{{ route('user_store') }}" method="post" enctype="multipart/form-data">
       @csrf
       @method('POST')
@@ -62,9 +66,11 @@
         <div class="mb-3" id="div_Role">
             <label for="inputRole" class="form-label">Role</label>
             <select name="role" id="input_role" class="form-control" onchange="onRoleChanged(this.value)">
-                <option value="Super Admin">Super Admin</option>
-                <option value="Admin">Admin</option>
-                <option value="Supervisor">Supervisor</option>
+                @if (session('role') == 'Super Admin')
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Supervisor">Supervisor</option>
+                @endif
                 <option value="User">User</option>
             </select>
         </div>
@@ -110,6 +116,16 @@
         } else {
             document.getElementById('div_Admin').hidden = true;
             document.getElementById('div_supervisor').hidden = true;
+        }
+    }
+
+    function roleSettingUser() {
+        let role = document.getElementById('role_value').value;
+        let divAdmin = document.getElementById('div_Admin');
+        let divSupervisor = document.getElementById('div_supervisor');
+
+        if (role == 'User') {
+            divSupervisor.hidden = false;
         }
     }
 </script>

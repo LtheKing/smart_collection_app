@@ -54,11 +54,11 @@
             var table = $('#table_Deskcoll').DataTable({
                 "ajax": 'array',
                 "columns": [
-                    { "data": "Nama" },
-                    { "data": "NIP"},
-                    { "data": "NoTelepon"},
-                    { "data": "Alamat"},
-                    { "data": "Email"},
+                    { "data": "name" },
+                    { "data": "nip"},
+                    { "data": "no_telepon"},
+                    { "data": "alamat"},
+                    { "data": "email"},
                     { "defaultContent": 
                         "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
                         "&nbsp;&nbsp;" +

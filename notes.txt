@@ -3,4 +3,6 @@ update hirarki user, supervisor, deskcoll:
  = sediakan pemilihan admin jika role == supervisor
  = sediakan pemilihan supervisor jika role == User
 
-- ubah get & update data supervisor & deskcoll di distribusi pekerjaan
+- ubah get & update data supervisor & deskcoll di distribusi pekerjaan [DONE]
+
+- update edit & detail customer page

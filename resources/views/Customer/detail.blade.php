@@ -13,6 +13,14 @@
 
             {{-- COLUMN 1 --}}
             <div class="row">
+                <div class="col show-content">
+                    
+                </div>
+
+                <div class="col show-content">
+
+                </div>
+
                 <div class="col">
                     <table class="table">
                         <tr>
@@ -362,12 +370,6 @@
                         </tr>
 
                         <tr>
-                            <td>Last Report</td>
-                            <td>:</td>
-                            <td>{{ $customer->LastReport }}</td>
-                        </tr>
-
-                        <tr>
                             <td>Last Visit Address</td>
                             <td>:</td>
                             <td>{{ $customer->LastVisitAddress }}</td>
@@ -482,6 +484,18 @@
                             <td>Permanent Message</td>
                             <td>:</td>
                             <td>{{ $customer->PermanentMessage }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Last Report</td>
+                            <td>:</td>
+                            <td>{{ $customer->LastReport }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Report</td>
+                            <td>:</td>
+                            <td>{{ $customer->Report }}</td>
                         </tr>
                     </table>
                 </div>
