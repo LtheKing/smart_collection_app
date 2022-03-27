@@ -293,4 +293,11 @@ class CustomerController extends Controller
 
         return $customers[0]->id;
     }
+
+    //testing
+    public function test_detail_customer($id){
+        Artisan::call('cache:clear');
+        $customer = Customer::find($id);
+        return view('TestPage.detail_customer', compact('customer'));
+    }
 }
