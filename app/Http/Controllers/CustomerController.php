@@ -7,12 +7,16 @@ use Illuminate\Support\Collection;
 use DB;
 use App\Models\Customer;
 use App\Models\Bank;
+use App\Models\User;
 use Artisan;
 use Schema;
 use Excel;
 use App\Exports\CustomerExport;
 use App\Imports\CustomerImport;
 use Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Carbon;
 
 class CustomerController extends Controller
 {
@@ -197,8 +201,20 @@ class CustomerController extends Controller
 
     public function import(Request $request) 
     {
+        $session = Session::all();
+        $role = $session['role'];
+        $username = $session['username'];
+        $reqFile = $request->file('file');
+        $fileName = $username . '_' . now()->toDateString() . '.' . $reqFile->getClientOriginalExtension();
         // dd($request->all());
-        Excel::import(new CustomerImport, $request->file('file'));
+        if ($request->hasFile('file')) {
+            // Storage::put('public/files/'. $fileName, $reqFile, 'public');
+            $reqFile->store('public/files/'. $fileName);
+            return back();
+        }
+
+        $import = new CustomerImport;
+        Excel::import($import, $request->file('file'));
            
         return back();
     }
@@ -299,5 +315,22 @@ class CustomerController extends Controller
         Artisan::call('cache:clear');
         $customer = Customer::find($id);
         return view('TestPage.detail_customer', compact('customer'));
+    }
+
+    public function getPICNameById($id) {
+        Artisan::call('cache:clear');
+        $user = User::where('id', $id)->get();
+
+        if(count($user) > 0) {
+            return response($user[0]->name, 200);
+        } else {
+            return response('ga ada', 200);
+        }
+    }
+
+    public function customResponseImport(Request $request) {
+        $res = Excel::import(new CustomerImport, $request->file('file'));
+        dd($res);
+        return response($res, 200);
     }
 }

@@ -220,64 +220,6 @@
                         </tr>
                     </table>
                 </div>
-
-                <div class="col">
-                    <table class="table">
-                        <tr>
-                            <td>Virtual Account</td>
-                            <td>:</td>
-                            <td>{{ $customer->VirtualAccount }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Virtual Account Name</td>
-                            <td>:</td>
-                            <td>{{ $customer->VirtualAccountName }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Komoditi</td>
-                            <td>:</td>
-                            <td>{{ $customer->Komoditi }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Komoditi Type</td>
-                            <td>:</td>
-                            <td>{{ $customer->KomoditiType }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Produsen</td>
-                            <td>:</td>
-                            <td>{{ $customer->Produsen }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Model</td>
-                            <td>:</td>
-                            <td>{{ $customer->Model }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Loan Term</td>
-                            <td>:</td>
-                            <td>{{ $customer->LoanTerm }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Installment Already Paid</td>
-                            <td>:</td>
-                            <td>{{ $customer->InstallmentAlreadyPaid }}</td>
-                        </tr>
-
-                        <tr>
-                            <td>Monthly Payment Nominal</td>
-                            <td>:</td>
-                            <td>{{ $customer->MonthlyPaymentNominal }}</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
         </div>
 
@@ -454,6 +396,64 @@
                 <div class="col">
                     <table class="table">
                         <tr>
+                            <td>Virtual Account</td>
+                            <td>:</td>
+                            <td>{{ $customer->VirtualAccount }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Virtual Account Name</td>
+                            <td>:</td>
+                            <td>{{ $customer->VirtualAccountName }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Komoditi</td>
+                            <td>:</td>
+                            <td>{{ $customer->Komoditi }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Komoditi Type</td>
+                            <td>:</td>
+                            <td>{{ $customer->KomoditiType }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Produsen</td>
+                            <td>:</td>
+                            <td>{{ $customer->Produsen }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Model</td>
+                            <td>:</td>
+                            <td>{{ $customer->Model }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Loan Term</td>
+                            <td>:</td>
+                            <td>{{ $customer->LoanTerm }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Installment Already Paid</td>
+                            <td>:</td>
+                            <td>{{ $customer->InstallmentAlreadyPaid }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Monthly Payment Nominal</td>
+                            <td>:</td>
+                            <td>{{ $customer->MonthlyPaymentNominal }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col">
+                    <table class="table">
+                        <tr>
                             <td>Other Data 1</td>
                             <td>:</td>
                             <td>{{ $customer->OtherData1 }}</td>
@@ -502,7 +502,7 @@
     </div>
 
     <div class="row">
-        <button type="button" class="btn btn-warning mt-2 mb-3" id="btn-more" Value="More"
+        <button type="button" class="btn btn-warning ml-3 mb-3" id="btn-more" Value="More"
         onclick="onBtnMoreClick(this, this.value)">More</button>
     </div>
 </div>
@@ -529,8 +529,17 @@
 
 <script>
     function onBtnMoreClick(el, val) {
+        let hiddenContent = document.getElementsByClassName('hide-content');
         if (val == 'More') {
-            
+            el.className = 'btn btn-secondary ml-3 mb-3';
+            el.textContent = 'Less';
+            el.value = 'Less';
+            hiddenContent[0].hidden=false
+        } else {
+            el.className = 'btn btn-warning ml-3 mb-3';
+            el.textContent = 'More';
+            el.value = 'More';
+            hiddenContent[0].hidden=true
         }
     }
 </script>

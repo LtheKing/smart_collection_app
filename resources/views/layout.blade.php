@@ -88,7 +88,7 @@
                     </li>
                 </ul>
             </div>
-            <a class="btn btn-secondary float-right mr-3" href="{{ route('test_detail_page', 1) }}">Test Page</a>
+            {{-- <a class="btn btn-secondary float-right mr-3" href="{{ route('test_detail_page', 1) }}">Test Page</a> --}}
             <a class="btn btn-danger float-right" href="{{ route('logout') }}">Logout</a>
         </nav>
 

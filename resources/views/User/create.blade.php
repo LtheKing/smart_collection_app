@@ -79,8 +79,8 @@
         <div class="mb-3" id="div_Admin" hidden=true>
             <label for="input_admin_id" class="form-label">Pilih Admin</label>
             <select name="admin_id" id="input_admin_id" class="form-control">
+                <option value="" selected></option>
                 @foreach ($admins as $item)
-                    <option value="" selected></option>
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
@@ -90,8 +90,8 @@
         <div class="mb-3" id="div_supervisor" hidden=true>
             <label for="input_supervisor_id" class="form-label">Pilih Supervisor</label>
             <select name="supervisor_id" id="input_supervisor_id" class="form-control">
+                <option value="" selected></option>
                 @foreach ($supervisors as $item)
-                    <option value="" selected></option>
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>

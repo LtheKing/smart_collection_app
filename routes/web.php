@@ -95,3 +95,6 @@ Route::get('/test/deskcoll', 'DeskCollController@getData');
 Route::get('/test/nasabah/custom/export', 'NasabahController@export_excel_custom');
 Route::get('/test/customer/selected_by_role/{role}/{username}', 'CustomerController@select_by_role');
 Route::get('/test/customer/detail/{id}', 'CustomerController@test_detail_customer')->name('test_detail_page');
+Route::get('/test/customer/pic-name/{id}', 'CustomerController@getPICNameById')->name('test_pic_name');
+Route::post('/test/customer/import-response', 'CustomerController@customResponseImport');
+
