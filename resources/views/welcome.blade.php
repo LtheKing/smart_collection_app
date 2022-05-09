@@ -73,7 +73,7 @@
                                     </div>
                                     
                                     <button type="submit" class="btn btn-info btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
-                                    <a href="{{ route('user_register') }}" class="btn btn-success btn-block text-uppercase mb-2 rounded-pill shadow-sm">Register</a>
+                                    {{-- <a href="{{ route('user_register') }}" class="btn btn-success btn-block text-uppercase mb-2 rounded-pill shadow-sm">Register</a> --}}
                                 </form>
                             </div>
                         </div>

@@ -138,7 +138,52 @@ class UserController extends Controller
     //api
     public function getAll()
     {
-        $users = DB::table('users')->get();
+        $session = Session::all();
+        $role = $session['role'];
+
+        $users;
+        $data;
+
+        $user = DB::table('users')
+        ->where('role', $role)
+        ->where('username', $username)
+        ->get();
+
+        switch ($role) {
+            case 'Super Admin':
+                $users = DB::table('users')->get();
+                break;
+
+            case 'Admin':
+                $users = DB::table('users')->where('role', $role && '');
+                $users = DB::table('sm_customer')->where('IsDeletedByAdmin', '')->get();
+                break;
+
+            case 'Supervisor':
+                //JANGAN  LUPA PAKE KONDISI KALO NULL
+                $deskcoll = DB::table('users')
+                            ->where('supervisor_id', $user[0]->id)
+                            ->get();
+
+                if (count($deskcoll) == 0) {
+                    return $deskcoll;
+                }
+
+                $users = DB::table('sm_customer')
+                            ->where('Deskcoll_id', $deskcoll[0]->id)
+                            ->get();
+                break;
+
+            case 'User':
+                $users = DB::table('sm_customer')
+                            ->where('Deskcoll_id', $user[0]->id)
+                            ->get();
+                break;
+            default:
+                $users = DB::table('sm_customer')->get();
+                break;
+        }
+
         $data = (object)[
             'data' => $users
         ];
@@ -152,4 +197,13 @@ class UserController extends Controller
         $user->delete();
         return response('Data Deleted', 200);
     }
+
+    public function testGetUserByRole() {
+        $session = Session::all();
+        $role = $session['role'];
+        $username = $session['username'];
+
+        // $users = DB::table('users')->where('role' != );
+    }
 }
+
