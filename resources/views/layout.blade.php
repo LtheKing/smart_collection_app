@@ -83,9 +83,11 @@
                         <a class="nav-link" href="{{ route('dc_index') }}">Desk Coll</a>
                     </li> --}}
                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user_index') }}">User</a>
-                    </li>
+                    @if (session()->get('role') != 'User')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user_index') }}">User</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             {{-- <a class="btn btn-secondary float-right mr-3" href="{{ route('test_detail_page', 1) }}">Test Page</a> --}}

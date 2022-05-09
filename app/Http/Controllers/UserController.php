@@ -11,6 +11,7 @@ use App\Models\Supervisor;
 use App\Models\Deskcoll;
 use App\Models\Bank;
 use Artisan;
+use Session;
 
 class UserController extends Controller
 {
@@ -139,7 +140,11 @@ class UserController extends Controller
     public function getAll()
     {
         $session = Session::all();
-        $role = $session['role'];
+        // $role = $session['role'];
+        // $username = $session['username'];
+
+        $role = 'Supervisor';
+        $username = 'spv_mutiara';
 
         $users;
         $data;
@@ -161,26 +166,30 @@ class UserController extends Controller
 
             case 'Supervisor':
                 //JANGAN  LUPA PAKE KONDISI KALO NULL
-                $deskcoll = DB::table('users')
-                            ->where('supervisor_id', $user[0]->id)
-                            ->get();
-
-                if (count($deskcoll) == 0) {
-                    return $deskcoll;
+                $spv = DB::table('users')->where('username', $username)->get();
+                // dd($spv);
+                if (count($spv) == 0) {
+                    return $users == null;
                 }
 
-                $users = DB::table('sm_customer')
-                            ->where('Deskcoll_id', $deskcoll[0]->id)
-                            ->get();
+                $bawahan = DB::table('users')->where('supervisor_id', $spv[0]->id)->get();
+
+                if (count($bawahan) == 0) {
+                    return $users == null;
+                }
+
+                foreach ($bawahan as $user) {
+                    $spv->push($user);
+                }
+
+                $users = $spv;
                 break;
 
             case 'User':
-                $users = DB::table('sm_customer')
-                            ->where('Deskcoll_id', $user[0]->id)
-                            ->get();
+                $users = null;
                 break;
             default:
-                $users = DB::table('sm_customer')->get();
+                $users = DB::table('users')->get();
                 break;
         }
 
@@ -199,11 +208,25 @@ class UserController extends Controller
     }
 
     public function testGetUserByRole() {
-        $session = Session::all();
-        $role = $session['role'];
-        $username = $session['username'];
+        // $session = Session::all();
+        // $role = $session['role'];
+        // $username = $session['username'];
 
-        // $users = DB::table('users')->where('role' != );
+        $role = 'Supervisor';
+        $username = 'spv_mutiara';
+
+        if ($role == 'Supervisor') {
+            $spv = DB::table('users')->where('username', $username)->get();
+            $users = DB::table('users')->where('supervisor_id', $spv[0]->id)->get();
+            foreach ($users as $user) {
+                $spv->push($user);
+            }
+
+            return response($spv, 200);
+        }
+
+        return response('empty', 200);
+        
     }
 }
 

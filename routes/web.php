@@ -61,6 +61,7 @@ Route::middleware('usersession')->group(function() {
     Route::post('/user/store', 'UserController@store')->name('user_store');
     Route::get('/user/edit/{id}', 'UserController@edit')->name('user_edit');
     Route::put('/user/update/{id}', 'UserController@update')->name('user_update');
+    Route::get('/user/detail/{id}', 'UserController@show')->name('user_detail');
 });
 
 
@@ -97,4 +98,5 @@ Route::get('/test/customer/selected_by_role/{role}/{username}', 'CustomerControl
 Route::get('/test/customer/detail/{id}', 'CustomerController@test_detail_customer')->name('test_detail_page');
 Route::get('/test/customer/pic-name/{id}', 'CustomerController@getPICNameById')->name('test_pic_name');
 Route::post('/test/customer/import-response', 'CustomerController@customResponseImport');
+Route::post('/test/user/get-supervisor', 'UserController@testGetUserByRole');
 
