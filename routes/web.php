@@ -47,6 +47,8 @@ Route::middleware('usersession')->group(function() {
 
     //Customer
     Route::get('/customer/index', 'CustomerController@index')->name('customer_index');
+    Route::get('/customer/index/adm', 'CustomerController@index_adm')->name('customer_index_adm');
+    Route::get('/customer/index/spv', 'CustomerController@index_spv')->name('customer_index_spv');
     Route::get('/customer/create', 'CustomerController@create')->name('customer_create');
     Route::post('/customer/store', 'CustomerController@store')->name('customer_store');
     Route::get('/customer/detail/{id}', 'CustomerController@show')->name('customer_detail');
@@ -81,6 +83,7 @@ Route::get('/teamlead/customer/array', 'CustomerController@getAll')->name('custo
 Route::get('/teamlead/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::get('/customer/array', 'CustomerController@getAll')->name('customer_array');
+Route::get('/customer/index/array', 'CustomerController@getAll')->name('customer_array');
 Route::get('/user/array', 'UserController@getAll')->name('user_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 Route::delete('/api/customer/delete/{id}', 'CustomerController@api_delete')->name('customer_api_delete');

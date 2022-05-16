@@ -91,5 +91,13 @@ class Customer extends Model
 
         'IsDeletedByAdmin',
         'Deskcoll_id',
+
+        'Action',
+        'ReportDate',
+        'PTPDate',
+        'PTPAmount',
+        'PaidDate',
+        'PaidAmount'
+
     ];
 }

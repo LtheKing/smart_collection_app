@@ -112,21 +112,27 @@
         <thead class="table-borderless">
             <th class="text-center">Nama</th>
             <th class="text-center">Bank</th>
-            <th class="text-center">Tipe Kartu</th>
-            <th class="text-center">PIC</th>
-            <th class="text-center" width="15%">Nomor Telepon 1</th>
-            <th class="text-center">Email</th>
-            <th class="text-center col-action">Action</th>
+            <th class="text-center">Action</th>
+            <th class="text-center">PTP Date</th>
+            <th class="text-center" width="15%">PTP Amount</th>
+            <th class="text-center">Paid Amount</th>
+            <th class="text-center">Paid Date</th>
+            <th class="text-center">Report Date</th>
+            <th class="text-center">Report</th>
+            <th class="text-center col-action">#</th>
         </thead>
         <tfoot>
             <tr>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Bank</th>
-                <th class="text-center">Tipe Kartu</th>
-                <th class="text-center">PIC</th>
-                <th class="text-center">Nomor Telepon 1</th>
-                <th class="text-center">Email</th>
-                <th class="text-center col-action">Action</th>
+            <th class="text-center">Nama</th>
+            <th class="text-center">Bank</th>
+            <th class="text-center">Action</th>
+            <th class="text-center">PTP Date</th>
+            <th class="text-center" width="15%">PTP Amount</th>
+            <th class="text-center">Paid Amount</th>
+            <th class="text-center">Paid Date</th>
+            <th class="text-center">Report Date</th>
+            <th class="text-center">Report Amount</th>
+                <th class="text-center col-action">#</th>
             </tr>
         </tfoot>
     </table>
@@ -165,16 +171,25 @@
                             "data": "Bank"
                         },
                         {
-                            "data": "TypeCard"
+                            "data": "Action"
                         },
                         {
-                            "data": "PIC"
+                            "data": "PTPDate"
                         },
                         {
-                            "data": "Phone1"
+                            "data": "PTPAmount"
                         },
                         {
-                            "data": "Email"
+                            "data": "PaidDate"
+                        },
+                        {
+                            "data": "PaidAmount"
+                        },
+                        {
+                            "data": "ReportDate"
+                        },
+                        {
+                            "data": "ReportAmount"
                         },
                         // {
                         //     "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
@@ -230,16 +245,25 @@
                             "data": "Bank"
                         },
                         {
-                            "data": "TypeCard"
+                            "data": "Action"
                         },
                         {
-                            "data": "PIC"
+                            "data": "PTPDate"
                         },
                         {
-                            "data": "Phone1"
+                            "data": "PTPAmount"
                         },
                         {
-                            "data": "Email"
+                            "data": "PaidDate"
+                        },
+                        {
+                            "data": "PaidAmount"
+                        },
+                        {
+                            "data": "ReportDate"
+                        },
+                        {
+                            "data": "Report"
                         },
                         {
                             "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +

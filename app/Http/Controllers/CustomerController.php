@@ -33,6 +33,22 @@ class CustomerController extends Controller
         return view('Customer.index', compact('columns'));
     }
 
+    public function index_spv()
+    {
+        $session = Session::all();
+        // dd($session);
+        $columns = DB::getSchemaBuilder()->getColumnListing('sm_customer');
+        return view('Customer.user_spv.index', compact('columns'));
+    }
+
+    public function index_adm()
+    {
+        $session = Session::all();
+        // dd($session);
+        $columns = DB::getSchemaBuilder()->getColumnListing('sm_customer');
+        return view('Customer.spadm_adm.index', compact('columns'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -201,22 +217,50 @@ class CustomerController extends Controller
 
     public function import(Request $request) 
     {
-        $session = Session::all();
-        $role = $session['role'];
-        $username = $session['username'];
-        $reqFile = $request->file('file');
-        $fileName = $username . '_' . now()->toDateString() . '.' . $reqFile->getClientOriginalExtension();
-        // dd($request->all());
-        if ($request->hasFile('file')) {
+        if (empty($request->file('file'))) 
+        {
+            return back()->with('error','custom message');
+        } else {
+            $session = Session::all();
+            $role = $session['role'];
+            $username = $session['username'];
+            $reqFile = $request->file('file');
+            $fileName = $username . '_' . now()->toDateString() . '.' . $reqFile->getClientOriginalExtension();
+
             // Storage::put('public/files/'. $fileName, $reqFile, 'public');
-            $reqFile->store('public/files/'. $fileName);
+            $pathToFile = $reqFile->store('public/files/'. $fileName);
+
+            $import = new CustomerImport;
+            // $res = Excel::import($import, $request->file('file'));
+            $import->import($pathToFile); // we are using the trait importable in the xxxImport which allow us to handle it from the controller directly
+
+            // dd($import->errors());
+            // if($import->failures()->isNotEmpty()){
+            //     $failures = $import->failures();
+            //     dd($failures);
+            //     return back()->with('error', $failures);
+            // }
+
+            // try {
+            //     $import->import($pathToFile);
+            // } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            //     $failures = $e->failures();
+            //     $val;
+            //     // $desk_id = '';
+            //     foreach ($failures as $failure) {
+            //         $failure->row(); // row that went wrong
+            //         $failure->attribute(); // either heading key (if using heading row concern) or column index
+            //         $failure->errors(); // Actual error messages from Laravel validator
+            //         $val = $failure->values(); // The values of the row that has failed.
+            //         // $desk_id .= $val['deskcoll_id'] . ', ';
+            //         // dd($val['deskcoll_id']);
+            //     }
+
+            //     return back()->with('error', 'PIC dengan id : ' . $val['deskcoll_id'] . ' tidak ditemukan');
+            // }  
+            
             return back();
         }
-
-        $import = new CustomerImport;
-        Excel::import($import, $request->file('file'));
-           
-        return back();
     }
 
     //API

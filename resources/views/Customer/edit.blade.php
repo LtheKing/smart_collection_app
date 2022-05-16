@@ -75,6 +75,18 @@
                             <input type="text" class="form-control" id="inputPhone1" name="Phone1"
                                 value="{{ old('Phone1', $customer->Phone1) }}">
                         </div>
+
+                        <div class="mb-3" id="div_PTPDate">
+                            <label for="inputPTPDate" class="form-label">PTP Date</label>
+                            <input type="date" class="form-control" id="inputPTPDate" name="PTPDate"
+                                value="{{ old('PTPDate', $customer->PTPDate) }}">
+                        </div>
+
+                        <div class="mb-3" id="div_PTPAmount">
+                            <label for="inputPTPAmount" class="form-label">PTP Amount</label>
+                            <input type="number" class="form-control" id="inputPTPAmount" name="PTPAmount"
+                                value="{{ old('PTPAmount', $customer->PTPAmount) }}">
+                        </div>
                     </div>
 
                     {{-- COLUMN 1.1.1.2 --}}
@@ -108,6 +120,24 @@
                             <input type="text" class="form-control" id="inputECPhone1" name="ECPhone1"
                                 value="{{ old('ECPhone1', $customer->ECPhone1) }}">
                         </div>
+
+                        <div class="mb-3" id="div_ReportDate">
+                            <label for="inputReportDate" class="form-label">Report Date</label>
+                            <input type="date" class="form-control" id="inputReportDate" name="ReportDate"
+                                value="{{ old('ReportDate', $customer->ReportDate) }}">
+                        </div>
+
+                        <div class="mb-3" id="div_PaidDate">
+                            <label for="inputPaidDate" class="form-label">Paid Date</label>
+                            <input type="date" class="form-control" id="inputPaidDate" name="PaidDate"
+                                value="{{ old('PaidDate', $customer->PaidDate) }}">
+                        </div>
+
+                        <div class="mb-3" id="div_PaidAmount">
+                            <label for="inputPaidAmount" class="form-label">Paid Amount</label>
+                            <input type="Amount" class="form-control" id="inputPaidAmount" name="PaidAmount"
+                                value="{{ old('PaidAmount', $customer->PaidAmount) }}">
+                        </div>
                     </div>
 
                     {{-- COLUMN 1.1.1.3 --}}
@@ -139,6 +169,23 @@
                         <div class="mb-3" id="div_Report">
                             <label for="inputReport" class="form-label">Report</label>
                             <textarea class="form-control" id="inputReport" name="Report"> {{ old('Report', $customer->Report) }} </textarea>
+                        </div>
+
+                        <div class="mb-3" id="div_Action">
+                            <label for="inputAction" class="form-label">Action</label>
+                            <select name="Action" id="inputAction" class="form-control">
+                                <option value="None">None</option>
+                                <option value="VALID">VALID</option>
+                                <option value="PROSPEK">PROSPEK</option>
+                                <option value="PTP">PTP</option>
+                                <option value="RUTIN">RUTIN</option>
+                                <option value="BP">BP</option>
+                                <option value="INVESTIGASI">INVESTIGASI</option>
+                                <option value="NOANS">NOANS</option>
+                                <option value="LUNAS">LUNAS</option>
+                                <option value="SKIP">SKIP</option>
+                                <option value="HOLD">HOLD</option>
+                            </select>
                         </div>
                     </div>
                 </div>

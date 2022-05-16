@@ -3,26 +3,44 @@
 namespace App\Imports;
 
 use App\Models\Customer;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Validators\Failure;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
 class CustomerImport implements ToModel, WithHeadingRow
 {
+    // use Importable,SkipsErrors, SkipsFailures;
+    use Importable;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
     public function model(array $row)
     {
-        // dd($row);
+        $user = User::where('id', $row['deskcoll_id'])->get();
+
+        if(count($user) == 0) {
+            return $row['namecustomer'];
+        }
+
+        $namaPic = $user[0]->name;
+
         return new Customer([
             'NumberCard'                    => $row['numbercard'],
             'Bank'                          => $row['bank'],
             'TypeCard'                      => $row['typecard'],
             'NameCustomer'                  => $row['namecustomer'],
-            'PIC'                           => $row['pic'],
+            'PIC'                           => $namaPic,
             'AssignmentDate'                => $row['assignmentdate'],
             'ExpireDate'                    => $row['expiredate'],
             'DateOfBirth'                   => $row['dateofbirth'],
@@ -99,4 +117,51 @@ class CustomerImport implements ToModel, WithHeadingRow
             'Deskcoll_id'                   => $row['deskcoll_id'],
         ]);
     }
+
+    // public function rules(): array
+    // {
+    //     return [
+    //         'PIC' => ['required'],
+    //     ];
+    // }
+
+    // public function customValidationMessages()
+    // {
+    //     return [
+    //         'PIC.required' => 'PIC Tidak Ditemukan' ,
+    //     ];
+    // }
+
+    // public function onFailure(Failure ...$failures)
+    // {
+    //     // Handle the failures how you'd like.
+    //     $val = '';
+    //     foreach ($failures as $failure) {
+    //         $failure->row(); // row that went wrong
+    //         $failure->attribute(); // either heading key (if using heading row concern) or column index
+    //         $failure->errors(); // Actual error messages from Laravel validator
+    //         $val = $failure->values(); // The values of the row that has failed.
+    //         // $desk_id .= $val['deskcoll_id'] . ', ';
+    //         // dd($val['deskcoll_id']);
+    //     }
+
+    //     return $val;
+    // }
+
+    // public function prepareForValidation($data, $index)
+    // {
+    //     $data['pic'] = $data['pic'] ?? $this->getPic($data);
+        
+    //     return $data;
+    // }
+
+    // public function getPic($row) {
+    //     $user = User::where('id', $row['deskcoll_id'])->get();
+
+    //     if(count($user) == 0) {
+    //         return $row['namecustomer'];
+    //     }
+
+    //     $namaPic = $user[0]->name;
+    // }
 }
