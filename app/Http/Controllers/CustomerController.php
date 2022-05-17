@@ -271,8 +271,8 @@ class CustomerController extends Controller
         $role = $session['role'];
         $username = $session['username'];
 
-        // $role = 'Supervisor';
-        // $username = 'spv_mutiara';
+        // $role = 'Admin';
+        // $username = 'admin';
 
         $customers;
         $data;
@@ -284,11 +284,34 @@ class CustomerController extends Controller
 
         switch ($role) {
             case 'Super Admin':
-                $customers = DB::table('sm_customer')->get();
+                $customers = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
+
+                foreach ($customers as $cu) {
+                    $pic = User::where('id', $cu->Deskcoll_id)->get();
+                    if (count($pic) > 0) {
+                        $picName = $pic[0]->name;
+                        $spv = User::where('id', $pic[0]->id)->get();
+                        $cu->PIC = $picName;
+                        $cu->Supervisor = $spv[0]->name;
+                    }
+                }
                 break;
 
             case 'Admin':
-                $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')->get();
+                $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')
+                                    ->whereNotNull('Deskcoll_id')
+                                    ->get();
+                
+                foreach ($customers as $cu) {
+                    $pic = User::where('id', $cu->Deskcoll_id)->get();
+                    if (count($pic) > 0) {
+                        $picName = $pic[0]->name;
+                        $spv = User::where('id', $pic[0]->id)->get();
+                        $cu->PIC = $picName;
+                        $cu->Supervisor = $spv[0]->name;
+                    }
+                }
+
                 break;
 
             case 'Supervisor':
@@ -354,6 +377,10 @@ class CustomerController extends Controller
         return $customers[0]->id;
     }
 
+    public function getDataPlusSupervisor(){
+        
+    }
+
     //testing
     public function test_detail_customer($id){
         Artisan::call('cache:clear');
@@ -377,4 +404,21 @@ class CustomerController extends Controller
         dd($res);
         return response($res, 200);
     }
+
+    public function testCustomData() {
+        $cust = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
+        
+        foreach ($cust as $cu) {
+            $pic = User::where('id', $cu->Deskcoll_id)->get();
+            if (count($pic) > 0) {
+                $picName = $pic[0]->name;
+                $spv = User::where('id', $pic[0]->id)->get();
+                $cu->PIC = $picName;
+                $cu->Supervisor = $spv[0]->name;
+            }
+        }
+
+        return response($cust, 200); 
+    }
+
 }

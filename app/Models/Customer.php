@@ -98,6 +98,5 @@ class Customer extends Model
         'PTPAmount',
         'PaidDate',
         'PaidAmount'
-
     ];
 }

@@ -112,21 +112,29 @@
         <thead class="table-borderless">
             <th class="text-center">Nama</th>
             <th class="text-center">Bank</th>
-            <th class="text-center">Tipe Kartu</th>
             <th class="text-center">PIC</th>
-            <th class="text-center" width="15%">Nomor Telepon 1</th>
-            <th class="text-center">Email</th>
-            <th class="text-center col-action">Action</th>
+            <th class="text-center">Supervisor</th>
+            <th class="text-center">Action</th>
+            <th class="text-center">AssignmentDate</th>
+            <th class="text-center">ExpireDate</th>
+            <th class="text-center">OpenDate</th>
+            <th class="text-center">WODate</th>
+            <th class="text-center">OSBalance</th>
+            <th class="text-center col-action">#</th>
         </thead>
         <tfoot>
             <tr>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Bank</th>
-                <th class="text-center">Tipe Kartu</th>
-                <th class="text-center">PIC</th>
-                <th class="text-center">Nomor Telepon 1</th>
-                <th class="text-center">Email</th>
-                <th class="text-center col-action">Action</th>
+            <th class="text-center">Nama</th>
+            <th class="text-center">Bank</th>
+            <th class="text-center">PIC</th>
+            <th class="text-center">Supervisor</th>
+            <th class="text-center">Action</th>
+            <th class="text-center">AssignmentDate</th>
+            <th class="text-center">ExpireDate</th>
+            <th class="text-center">OpenDate</th>
+            <th class="text-center">WODate</th>
+            <th class="text-center">OSBalance</th>
+            <th class="text-center col-action">#</th>
             </tr>
         </tfoot>
     </table>
@@ -160,21 +168,33 @@
                     "ajax": 'array',
                     "columns": [{
                             "data": "NameCustomer"
-                        },
+                        },  
                         {
                             "data": "Bank"
-                        },
-                        {
-                            "data": "TypeCard"
                         },
                         {
                             "data": "PIC"
                         },
                         {
-                            "data": "Phone1"
+                            "data": "Supervisor"
                         },
                         {
-                            "data": "Email"
+                            "data": "Action"
+                        },
+                        {
+                            "data": "AssignmentDate"
+                        },
+                        {
+                            "data": "ExpireDate"
+                        },
+                        {
+                            "data": "OpenDate"
+                        },
+                        {
+                            "data": "WODate"
+                        },
+                        {
+                            "data": "OSBalance"
                         },
                         // {
                         //     "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +

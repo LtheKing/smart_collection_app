@@ -102,4 +102,5 @@ Route::get('/test/customer/detail/{id}', 'CustomerController@test_detail_custome
 Route::get('/test/customer/pic-name/{id}', 'CustomerController@getPICNameById')->name('test_pic_name');
 Route::post('/test/customer/import-response', 'CustomerController@customResponseImport');
 Route::post('/test/user/get-supervisor', 'UserController@testGetUserByRole');
+Route::get('/test/customer/custom-data', 'CustomerController@testCustomData')->name('test_custom_data');
 

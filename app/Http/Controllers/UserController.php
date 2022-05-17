@@ -28,7 +28,29 @@ class UserController extends Controller
                     'role' => $isExist[0]->role
                 ]);
                 
-                return redirect()->route('customer_index');
+                $session = Session::all();
+                $role = $session['role'];
+
+                switch($role){
+                    case 'Super Admin':
+                        return redirect()->route('customer_index_adm');
+                        break;
+
+                    case 'Admin':
+                        return redirect()->route('customer_index_adm');
+                        break;
+
+                    case 'Supervisor':
+                        return redirect()->route('customer_index_spv');
+                        break;
+
+                    case 'User':
+                        return redirect()->route('customer_index_spv');
+                        break;
+                    default:
+                        return redirect()->route('customer_index_spv');        
+                    break;
+                }
             } 
             else 
             {
@@ -155,13 +177,35 @@ class UserController extends Controller
         ->get();
 
         switch ($role) {
-            case 'Super Admin':
-                $users = DB::table('users')->get();
+           case 'Super Admin':
+                $customers = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
+
+                foreach ($cust as $cu) {
+                    $pic = User::where('id', $cu->Deskcoll_id)->get();
+                    if (count($pic) > 0) {
+                        $picName = $pic[0]->name;
+                        $spv = User::where('id', $pic[0]->id)->get();
+                        $cu->PIC = $picName;
+                        $cu->Supervisor = $spv[0]->name;
+                    }
+                }
                 break;
 
             case 'Admin':
-                $users = DB::table('users')->where('role', $role && '');
-                $users = DB::table('sm_customer')->where('IsDeletedByAdmin', '')->get();
+                $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')
+                                    ->whereNotNull('Deskcoll_id')
+                                    ->get();
+                
+                foreach ($cust as $cu) {
+                    $pic = User::where('id', $cu->Deskcoll_id)->get();
+                    if (count($pic) > 0) {
+                        $picName = $pic[0]->name;
+                        $spv = User::where('id', $pic[0]->id)->get();
+                        $cu->PIC = $picName;
+                        $cu->Supervisor = $spv[0]->name;
+                    }
+                }
+
                 break;
 
             case 'Supervisor':

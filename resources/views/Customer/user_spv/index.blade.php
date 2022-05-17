@@ -163,7 +163,7 @@
         function renderTableAdmin() {
             $(document).ready(function() {
                 var table = $('#table_customer').DataTable({
-                    "ajax": 'array',
+                    "ajax": 'index/array',
                     "columns": [{
                             "data": "NameCustomer"
                         },
