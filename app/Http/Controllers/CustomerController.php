@@ -15,7 +15,7 @@ use App\Exports\CustomerExport;
 use App\Imports\CustomerImport;
 use Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Carbon;
 
 class CustomerController extends Controller
@@ -215,11 +215,10 @@ class CustomerController extends Controller
         ), 'Nasabah.xlsx');
     }
 
-    public function import(Request $request) 
+    public function import(Request $request)
     {
-        if (empty($request->file('file'))) 
-        {
-            return back()->with('error','custom message');
+        if (empty($request->file('file'))) {
+            return back()->with('error', 'custom message');
         } else {
             $session = Session::all();
             $role = $session['role'];
@@ -228,7 +227,7 @@ class CustomerController extends Controller
             $fileName = $username . '_' . now()->toDateString() . '.' . $reqFile->getClientOriginalExtension();
 
             // Storage::put('public/files/'. $fileName, $reqFile, 'public');
-            $pathToFile = $reqFile->store('public/files/'. $fileName);
+            $pathToFile = $reqFile->store('public/files/' . $fileName);
 
             $import = new CustomerImport;
             // $res = Excel::import($import, $request->file('file'));
@@ -258,9 +257,13 @@ class CustomerController extends Controller
 
             //     return back()->with('error', 'PIC dengan id : ' . $val['deskcoll_id'] . ' tidak ditemukan');
             // }  
-            
+
             return back();
         }
+    }
+
+    public function bulkDeletePage() {
+        return view('Customer.bulk_delete');
     }
 
     //API
@@ -274,13 +277,13 @@ class CustomerController extends Controller
         // $role = 'Admin';
         // $username = 'admin';
 
-        $customers;
-        $data;
+        // $customers;
+        // $data;
 
         $user = DB::table('users')
-        ->where('role', $role)
-        ->where('username', $username)
-        ->get();
+            ->where('role', $role)
+            ->where('username', $username)
+            ->get();
 
         switch ($role) {
             case 'Super Admin':
@@ -299,9 +302,9 @@ class CustomerController extends Controller
 
             case 'Admin':
                 $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')
-                                    ->whereNotNull('Deskcoll_id')
-                                    ->get();
-                
+                    ->whereNotNull('Deskcoll_id')
+                    ->get();
+
                 foreach ($customers as $cu) {
                     $pic = User::where('id', $cu->Deskcoll_id)->get();
                     if (count($pic) > 0) {
@@ -317,22 +320,22 @@ class CustomerController extends Controller
             case 'Supervisor':
                 //JANGAN  LUPA PAKE KONDISI KALO NULL
                 $deskcoll = DB::table('users')
-                            ->where('supervisor_id', $user[0]->id)
-                            ->get();
+                    ->where('supervisor_id', $user[0]->id)
+                    ->get();
 
                 if (count($deskcoll) == 0) {
                     return $deskcoll;
                 }
 
                 $customers = DB::table('sm_customer')
-                            ->where('Deskcoll_id', $deskcoll[0]->id)
-                            ->get();
+                    ->where('Deskcoll_id', $deskcoll[0]->id)
+                    ->get();
                 break;
 
             case 'User':
                 $customers = DB::table('sm_customer')
-                            ->where('Deskcoll_id', $user[0]->id)
-                            ->get();
+                    ->where('Deskcoll_id', $user[0]->id)
+                    ->get();
                 break;
             default:
                 $customers = DB::table('sm_customer')->get();
@@ -355,7 +358,7 @@ class CustomerController extends Controller
             Customer::where('id', $id)->update([
                 'IsDeletedByAdmin' => 1
             ]);
-            
+
             return response('Data Deleted', 200);
         }
 
@@ -364,12 +367,13 @@ class CustomerController extends Controller
         return response('Data Deleted', 200);
     }
 
-    public function select_by_role($role, $username) {
+    public function select_by_role($role, $username)
+    {
         $customers = DB::table('users')
-                    ->where('role', $role)
-                    ->where('username', $username)
-                    ->get();
-        
+            ->where('role', $role)
+            ->where('username', $username)
+            ->get();
+
         $data = (object)[
             'data' => $customers
         ];
@@ -377,37 +381,41 @@ class CustomerController extends Controller
         return $customers[0]->id;
     }
 
-    public function getDataPlusSupervisor(){
-        
+    public function getDataPlusSupervisor()
+    {
     }
 
     //testing
-    public function test_detail_customer($id){
+    public function test_detail_customer($id)
+    {
         Artisan::call('cache:clear');
         $customer = Customer::find($id);
         return view('TestPage.detail_customer', compact('customer'));
     }
 
-    public function getPICNameById($id) {
+    public function getPICNameById($id)
+    {
         Artisan::call('cache:clear');
         $user = User::where('id', $id)->get();
 
-        if(count($user) > 0) {
+        if (count($user) > 0) {
             return response($user[0]->name, 200);
         } else {
             return response('ga ada', 200);
         }
     }
 
-    public function customResponseImport(Request $request) {
+    public function customResponseImport(Request $request)
+    {
         $res = Excel::import(new CustomerImport, $request->file('file'));
         dd($res);
         return response($res, 200);
     }
 
-    public function testCustomData() {
+    public function testCustomData()
+    {
         $cust = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
-        
+
         foreach ($cust as $cu) {
             $pic = User::where('id', $cu->Deskcoll_id)->get();
             if (count($pic) > 0) {
@@ -418,7 +426,6 @@ class CustomerController extends Controller
             }
         }
 
-        return response($cust, 200); 
+        return response($cust, 200);
     }
-
 }

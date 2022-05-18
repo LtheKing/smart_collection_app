@@ -53,6 +53,7 @@ Route::middleware('usersession')->group(function() {
     Route::post('/customer/store', 'CustomerController@store')->name('customer_store');
     Route::get('/customer/detail/{id}', 'CustomerController@show')->name('customer_detail');
     Route::get('/customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
+    Route::get('/customer/bulk-delete', 'CustomerController@bulkDeletePage')->name('customer_bd_page');
     Route::put('/customer/update/{id}', 'CustomerController@update')->name('customer_update');
     Route::post('/customer/export/excel', 'CustomerController@export')->name('customer_export');
     Route::post('/customer/import/excel', 'CustomerController@import')->name('customer_import');

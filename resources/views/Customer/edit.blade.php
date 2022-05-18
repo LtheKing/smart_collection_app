@@ -23,7 +23,14 @@
     @endif
 
     <h1 class="h1">Edit Data Customer</h1>
-    <a class="btn btn-secondary mb-3 mt-3" href="{{ route('customer_index') }}"> Kembali </a>
+
+    @if (session()->get('role') == 'Supervisor' || session()->get('role') == 'User')
+        <a class="btn btn-secondary mb-3 mt-3" href="{{ route('customer_index_spv') }}"> Kembali </a>
+    @endif
+
+    @if (session()->get('role') == 'Super Admin' || session()->get('role') == 'Admin')
+        <a class="btn btn-secondary mb-3 mt-3" href="{{ route('customer_index_adm') }}"> Kembali </a>
+    @endif
 
     <form action="{{ route('customer_update', $customer->id) }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -742,7 +749,7 @@
                 row7.hidden = true;
                 row8.hidden = true;
                 row9.hidden = true;
-                
+
                 for (var i = 0; i < garis.length; i++) {
                     garis[i].hidden = true;
                 }

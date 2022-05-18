@@ -168,8 +168,8 @@ class UserController extends Controller
         $role = 'Supervisor';
         $username = 'spv_mutiara';
 
-        $users;
-        $data;
+        // $users;
+        // $data;
 
         $user = DB::table('users')
         ->where('role', $role)
@@ -180,7 +180,7 @@ class UserController extends Controller
            case 'Super Admin':
                 $customers = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
 
-                foreach ($cust as $cu) {
+                foreach ($customers as $cu) {
                     $pic = User::where('id', $cu->Deskcoll_id)->get();
                     if (count($pic) > 0) {
                         $picName = $pic[0]->name;
@@ -196,7 +196,7 @@ class UserController extends Controller
                                     ->whereNotNull('Deskcoll_id')
                                     ->get();
                 
-                foreach ($cust as $cu) {
+                foreach ($customers as $cu) {
                     $pic = User::where('id', $cu->Deskcoll_id)->get();
                     if (count($pic) > 0) {
                         $picName = $pic[0]->name;
@@ -213,13 +213,13 @@ class UserController extends Controller
                 $spv = DB::table('users')->where('username', $username)->get();
                 // dd($spv);
                 if (count($spv) == 0) {
-                    return $users == null;
+                    return $spv == null;
                 }
 
                 $bawahan = DB::table('users')->where('supervisor_id', $spv[0]->id)->get();
 
                 if (count($bawahan) == 0) {
-                    return $users == null;
+                    return $bawahan == null;
                 }
 
                 foreach ($bawahan as $user) {
