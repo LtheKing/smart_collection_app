@@ -82,11 +82,15 @@
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('dc_index') }}">Desk Coll</a>
                     </li> --}}
-                    
+
                     @if (session()->get('role') != 'User')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user_index') }}">User</a>
                         </li>
+                    @endif
+
+                    @if (session()->get('role') == 'Super Admin' || session()->get('role') == 'Admin')
+                        <a class="nav-link" href="{{ route('customer_bd_page') }}">Bulk Delete</a>
                     @endif
                 </ul>
             </div>

@@ -31,7 +31,7 @@
         </div>
     @endif
 
-    <form action="{{ route('tl_distribusi_store') }}" id="form1" method="post" onsubmit="setSelection();">
+    <form action="{{ route('customer_bd_func') }}" id="form1" method="post" onsubmit="setSelection();">
         @csrf
         <div class="row">
             <div class="col-9">
@@ -73,7 +73,7 @@
             <div class="col-3" style="margin-top: 3cm;">
                 <button type="button" class="btn btn-danger mb-3" onclick="remove();">Hapus</button>
                 <select id="input_selected" class="form-control" size="15" onchange="setSelection();"></select>
-                <input type="hidden" name="nasabahId" id="nasabahId">
+                <input type="hidden" name="customerId" id="customerId">
                 <button class="btn btn-success mt-3">Simpan</button>
             </div>
         </div>
@@ -166,18 +166,18 @@
             // debugger;
             const inputSelect = document.getElementById('input_selected');
             var arr = Array.apply(null, inputSelect);
-            var nasabahId = document.getElementById('nasabahId');
+            var customerId = document.getElementById('customerId');
             if (arr.length > 0) {
                 // inputSelect[0].selected = true;
                 arr.forEach(function(x) {
-                    nasabahId.value += x.value + ','
+                    customerId.value += x.value + ','
                 });
             } else {
-                nasabahId.value = '';
+                customerId.value = '';
             }
 
-            var jadi = nasabahId.value.substr(0, nasabahId.value.length - 1);
-            nasabahId.value = jadi;
+            var jadi = customerId.value.substr(0, customerId.value.length - 1);
+            customerId.value = jadi;
         }
 
         function validate(e) {

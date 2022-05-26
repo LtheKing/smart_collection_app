@@ -266,6 +266,19 @@ class CustomerController extends Controller
         return view('Customer.bulk_delete');
     }
 
+    public function bulkDelete(Request $request) {
+        $request->validate([
+            'customerId' => 'required'
+        ], [
+            'customerId.required' => 'Pilih Customer terlebih Dahulu !'
+        ]);
+
+        $customerId = explode(',', $request->customerId);
+        Customer::whereIn('id', $customerId)->delete();
+
+        return back()->with('Success', 'Delete Customer Telah Berhasil');
+    }
+
     //API
 
     public function getAll()
