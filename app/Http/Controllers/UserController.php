@@ -97,26 +97,26 @@ class UserController extends Controller
 
         User::create($request->all());
 
-        if ($request->role == 'Supervisor') {
-            Supervisor::create([
-                'Nama' => $request->name,
-                'NoTelepon' => '-',
-                'Alamat' => '-',
-                'Email' => $request->email,
-                'NIP' => '-',
-            ]);
-        }
+        // if ($request->role == 'Supervisor') {
+        //     Supervisor::create([
+        //         'Nama' => $request->name,
+        //         'NoTelepon' => '-',
+        //         'Alamat' => '-',
+        //         'Email' => $request->email,
+        //         'NIP' => '-',
+        //     ]);
+        // }
 
-        if ($request->role == 'User') {
-            Deskcoll::create([
-                'Nama' => $request->name,
-                'NoTelepon' => '-',
-                'Alamat' => '-',
-                'Email' => $request->email,
-                'NIP' => '-',
-                'Supervisor_id' => '-',
-            ]);
-        }
+        // if ($request->role == 'User') {
+        //     Deskcoll::create([
+        //         'Nama' => $request->name,
+        //         'NoTelepon' => '-',
+        //         'Alamat' => '-',
+        //         'Email' => $request->email,
+        //         'NIP' => '-',
+        //         'Supervisor_id' => '-',
+        //     ]);
+        // }
 
         return redirect()->route('user_index');
     }
@@ -162,13 +162,13 @@ class UserController extends Controller
     public function getAll()
     {
         $session = Session::all();
-        // $role = $session['role'];
-        // $username = $session['username'];
+        $role = $session['role'];
+        $username = $session['username'];
 
-        $role = 'Supervisor';
-        $username = 'spv_mutiara';
+        // $role = 'Admin';
+        // $username = 'admin';
 
-        // $users;
+        $users = [];
         // $data;
 
         $user = DB::table('users')
@@ -178,33 +178,25 @@ class UserController extends Controller
 
         switch ($role) {
            case 'Super Admin':
-                $customers = DB::table('sm_customer')->whereNotNull('Deskcoll_id')->get();
-
-                foreach ($customers as $cu) {
-                    $pic = User::where('id', $cu->Deskcoll_id)->get();
-                    if (count($pic) > 0) {
-                        $picName = $pic[0]->name;
-                        $spv = User::where('id', $pic[0]->id)->get();
-                        $cu->PIC = $picName;
-                        $cu->Supervisor = $spv[0]->name;
-                    }
-                }
+                $users = User::all();
                 break;
 
             case 'Admin':
-                $customers = DB::table('sm_customer')->where('IsDeletedByAdmin', '')
-                                    ->whereNotNull('Deskcoll_id')
-                                    ->get();
+                $admin = DB::table('users')->where('username', $username)->get();
                 
-                foreach ($customers as $cu) {
-                    $pic = User::where('id', $cu->Deskcoll_id)->get();
-                    if (count($pic) > 0) {
-                        $picName = $pic[0]->name;
-                        $spv = User::where('id', $pic[0]->id)->get();
-                        $cu->PIC = $picName;
-                        $cu->Supervisor = $spv[0]->name;
+                if (count($admin) == 0) {
+                    break;
+                }
+
+                $bawahan = DB::table('users')->where('admin_id', $admin[0]->id)->get();
+
+                if (count($bawahan) > 0) {
+                    foreach ($bawahan as $user) {
+                        $admin->push($user);
                     }
                 }
+
+                $users = $admin;
 
                 break;
 
@@ -218,12 +210,10 @@ class UserController extends Controller
 
                 $bawahan = DB::table('users')->where('supervisor_id', $spv[0]->id)->get();
 
-                if (count($bawahan) == 0) {
-                    return $bawahan == null;
-                }
-
-                foreach ($bawahan as $user) {
-                    $spv->push($user);
+                if (count($bawahan) > 0) {
+                    foreach ($bawahan as $user) {
+                        $spv->push($user);
+                    }
                 }
 
                 $users = $spv;
@@ -271,6 +261,10 @@ class UserController extends Controller
 
         return response('empty', 200);
         
+    }
+
+    public function empty() {
+        return response('helo', 200);
     }
 }
 

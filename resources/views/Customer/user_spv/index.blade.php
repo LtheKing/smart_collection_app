@@ -165,31 +165,31 @@
                 var table = $('#table_customer').DataTable({
                     "ajax": 'index/array',
                     "columns": [{
-                            "data": "NameCustomer"
+                            "data": "NameCustomer", "defaultContent": ""
                         },
                         {
-                            "data": "Bank"
+                            "data": "Bank", "defaultContent": ""
                         },
                         {
-                            "data": "Action"
+                            "data": "Action", "defaultContent": ""
                         },
                         {
-                            "data": "PTPDate"
+                            "data": "PTPDate", "defaultContent": ""
                         },
                         {
-                            "data": "PTPAmount"
+                            "data": "PTPAmount", "defaultContent": ""
                         },
                         {
-                            "data": "PaidDate"
+                            "data": "PaidDate", "defaultContent": ""
                         },
                         {
-                            "data": "PaidAmount"
+                            "data": "PaidAmount", "defaultContent": ""
                         },
                         {
-                            "data": "ReportDate"
+                            "data": "ReportDate", "defaultContent": ""
                         },
                         {
-                            "data": "ReportAmount"
+                            "data": "ReportAmount", "defaultContent": ""
                         },
                         // {
                         //     "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
@@ -205,7 +205,7 @@
                         }
                     ],
                     columnDefs: [{
-                        "defaultContent": "-",
+                        "defaultContent": "<i>Data Kosong</i>",
                         "targets": "_all"
                     }]
                 });

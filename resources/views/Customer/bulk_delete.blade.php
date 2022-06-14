@@ -44,10 +44,6 @@
                         <th class="text-center">PIC</th>
                         <th class="text-center">Supervisor</th>
                         <th class="text-center">Action</th>
-                        <th class="text-center">AssignmentDate</th>
-                        <th class="text-center">ExpireDate</th>
-                        <th class="text-center">OpenDate</th>
-                        <th class="text-center">WODate</th>
                         <th class="text-center">OSBalance</th>
                         <th class="text-center col-action">#</th>
                     </thead>
@@ -58,10 +54,6 @@
                             <th class="text-center">PIC</th>
                             <th class="text-center">Supervisor</th>
                             <th class="text-center">Action</th>
-                            <th class="text-center">AssignmentDate</th>
-                            <th class="text-center">ExpireDate</th>
-                            <th class="text-center">OpenDate</th>
-                            <th class="text-center">WODate</th>
                             <th class="text-center">OSBalance</th>
                             <th class="text-center col-action">#</th>
                         </tr>
@@ -70,7 +62,7 @@
             </div>
 
             {{-- PILIH CUSTOMER --}}
-            <div class="col-3" style="margin-top: 3cm;">
+            <div class="col-3 style="margin-top: 3cm;">
                 <button type="button" class="btn btn-danger mb-3" onclick="remove();">Hapus</button>
                 <select id="input_selected" class="form-control" size="15" onchange="setSelection();"></select>
                 <input type="hidden" name="customerId" id="customerId">
@@ -97,18 +89,6 @@
                     },
                     {
                         "data": "Action"
-                    },
-                    {
-                        "data": "AssignmentDate"
-                    },
-                    {
-                        "data": "ExpireDate"
-                    },
-                    {
-                        "data": "OpenDate"
-                    },
-                    {
-                        "data": "WODate"
                     },
                     {
                         "data": "OSBalance"

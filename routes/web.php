@@ -86,7 +86,7 @@ Route::get('/teamlead/deskcoll/array', 'DeskCollController@getData')->name('desk
 Route::get('/deskcoll/array', 'DeskCollController@getData')->name('deskcoll_array');
 Route::get('/customer/array', 'CustomerController@getAll')->name('customer_array');
 Route::get('/customer/index/array', 'CustomerController@getAll')->name('customer_array');
-Route::get('/user/array', 'UserController@getAll')->name('user_array');
+Route::get('/user/array', 'UserController@getall')->name('user_array');
 Route::delete('/api/nasabah/delete/{id}', 'NasabahController@api_delete')->name('nasabah_api_delete');
 Route::delete('/api/customer/delete/{id}', 'CustomerController@api_delete')->name('customer_api_delete');
 Route::delete('/api/user/delete/{id}', 'UserController@api_delete')->name('user_api_delete');
