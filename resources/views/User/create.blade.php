@@ -86,8 +86,9 @@
             </select>
         </div>
 
-        {{-- MUNCUL JIKA ROLE = User --}}
-        <div class="mb-3" id="div_supervisor" hidden=true>
+        {{-- MUNCUL JIKA Pilihan ROLE = User --}}
+        @if (session('role') != 'Supervisor')
+        <div class="mb-3" id="div_supervisor">
             <label for="input_supervisor_id" class="form-label">Pilih Supervisor</label>
             <select name="supervisor_id" id="input_supervisor_id" class="form-control">
                 <option value="" selected></option>
@@ -96,6 +97,7 @@
                 @endforeach
             </select>
         </div>
+        @endif
 
         <div class="mb-3" id="div_Username">
             <label for="inputUsername" class="form-label">Username</label>

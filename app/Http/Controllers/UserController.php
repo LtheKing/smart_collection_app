@@ -73,6 +73,15 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $session = Session::all();
+        $role = $session['role'];
+        $username = $session['username'];
+
+        $user = DB::table('users')
+        ->where('role', $role)
+        ->where('username', $username)
+        ->get();
+
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -85,7 +94,14 @@ class UserController extends Controller
             $request->validate(['admin_id' => 'required']);
         }
 
-        if ($request->role == 'User') {
+        if ($request->role == 'User' && $role == 'Supervisor') {
+            // $request->validate(['supervisor_id' => 'required']);
+            $request->merge([
+                'supervisor_id' => $user[0]->id
+            ]); 
+        }
+
+        if ($request->role == 'User' && $role != 'Supervisor') {
             $request->validate(['supervisor_id' => 'required']);
         }
         
@@ -205,7 +221,7 @@ class UserController extends Controller
                 $spv = DB::table('users')->where('username', $username)->get();
                 // dd($spv);
                 if (count($spv) == 0) {
-                    return $spv == null;
+                    break;
                 }
 
                 $bawahan = DB::table('users')->where('supervisor_id', $spv[0]->id)->get();
@@ -264,7 +280,12 @@ class UserController extends Controller
     }
 
     public function empty() {
-        return response('helo', 200);
+        $user = DB::table('users')
+        ->where('role', 'Supervisor')
+        ->where('username', 'diandra.spv')
+        ->get();
+
+        return $user[0]->id;
     }
 }
 
