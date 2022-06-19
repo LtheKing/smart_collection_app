@@ -106,6 +106,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         // $request->validate([
         //     'NumberCard' => 'required',
         //     'Bank' => 'required',
@@ -287,8 +288,8 @@ class CustomerController extends Controller
         $role = $session['role'];
         $username = $session['username'];
 
-        // $role = 'Admin';
-        // $username = 'admin';
+        // $role = 'Supervisor';
+        // $username = 'diandra.spv';
 
         // $customers;
         // $data;

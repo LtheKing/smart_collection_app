@@ -100,8 +100,7 @@
                     <div class="col">
                         <div class="mb-3" id="div_Address1">
                             <label for="inputAddress1" class="form-label">Address 1</label>
-                            <textarea class="form-control" id="inputAddress1"
-                                name="Address1"> {{ old('Address1', $customer->Address1) }} </textarea>
+                            <textarea class="form-control" id="inputAddress1" name="Address1"> {{ old('Address1', $customer->Address1) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_HomePhone1">
@@ -112,8 +111,7 @@
 
                         <div class="mb-3" id="div_OfficeAddress1">
                             <label for="inputOfficeAddress1" class="form-label">Office Address 1</label>
-                            <textarea class="form-control" id="inputOfficeAddress1"
-                                name="OfficeAddress1"> {{ old('OfficeAddress1', $customer->OfficeAddress1) }} </textarea>
+                            <textarea class="form-control" id="inputOfficeAddress1" name="OfficeAddress1"> {{ old('OfficeAddress1', $customer->OfficeAddress1) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_ECName">
@@ -163,14 +161,12 @@
 
                         <div class="mb-3" id="div_PermanentMessage">
                             <label for="inputPermanentMessage" class="form-label">Permanent Message</label>
-                            <textarea class="form-control" id="inputPermanentMessage"
-                                name="PermanentMessage"> {{ old('PermanentMessage', $customer->PermanentMessage) }} </textarea>
+                            <textarea class="form-control" id="inputPermanentMessage" name="PermanentMessage"> {{ old('PermanentMessage', $customer->PermanentMessage) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_LastReport">
                             <label for="inputLastReport" class="form-label">Last Report</label>
-                            <textarea class="form-control" id="inputLastReport"
-                                name="LastReport"> {{ old('LastReport', $customer->LastReport) }} </textarea>
+                            <textarea class="form-control" id="inputLastReport" name="LastReport"> {{ old('LastReport', $customer->LastReport) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_Report">
@@ -181,18 +177,17 @@
                         <div class="mb-3" id="div_Action">
                             <label for="inputAction" class="form-label">Action</label>
                             <select name="Action" id="inputAction" class="form-control">
-                                <option value="None">None</option>
-                                <option value="VALID">VALID</option>
-                                <option value="PROSPEK">PROSPEK</option>
-                                <option value="PTP">PTP</option>
-                                <option value="RUTIN">RUTIN</option>
-                                <option value="BP">BP</option>
-                                <option value="INVESTIGASI">INVESTIGASI</option>
-                                <option value="NOANS">NOANS</option>
-                                <option value="LUNAS">LUNAS</option>
-                                <option value="SKIP">SKIP</option>
-                                <option value="HOLD">HOLD</option>
+                                <?php
+                                    $val = ['VALID', 'PROSPEK', 'PTP', 'RUTIN', 'BP', 'INVESTIGASI', 'NOANS', 'LUNAS', 'SKIP', 'HOLD'];
+                                ?>
+
+                                @foreach ($val as $item)
+                                    <option value="{{ $item }}"
+                                        {{ $customer->Action == $item ? 'selected' : '' }}>{{ $item }}
+                                    </option>
+                                @endforeach
                             </select>
+
                         </div>
                     </div>
                 </div>
@@ -298,22 +293,19 @@
                     <div class="col">
                         <div class="mb-3" id="div_Address2">
                             <label for="inputAddress2" class="form-label">Address 2</label>
-                            <textarea class="form-control" id="inputAddress2"
-                                name="Address2"> {{ old('Address2', $customer->Address2) }} </textarea>
+                            <textarea class="form-control" id="inputAddress2" name="Address2"> {{ old('Address2', $customer->Address2) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_Address3">
                             <label for="inputAddress3" class="form-label">Address 3</label>
-                            <textarea class="form-control" id="inputAddress3"
-                                name="Address3"> {{ old('Address3', $customer->Address3) }} </textarea>
+                            <textarea class="form-control" id="inputAddress3" name="Address3"> {{ old('Address3', $customer->Address3) }} </textarea>
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="mb-3" id="div_Address4">
                             <label for="inputAddress4" class="form-label">Address 4</label>
-                            <textarea class="form-control" id="inputAddress4"
-                                name="Address4"> {{ old('Address4', $customer->Address4) }} </textarea>
+                            <textarea class="form-control" id="inputAddress4" name="Address4"> {{ old('Address4', $customer->Address4) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_city">
@@ -363,8 +355,7 @@
 
                         <div class="mb-3" id="div_OfficeAddress2">
                             <label for="inputOfficeAddress2" class="form-label">Office Address 2</label>
-                            <textarea class="form-control" id="inputOfficeAddress2"
-                                name="OfficeAddress2"> {{ old('OfficeAddress2', $customer->OfficeAddress2) }} </textarea>
+                            <textarea class="form-control" id="inputOfficeAddress2" name="OfficeAddress2"> {{ old('OfficeAddress2', $customer->OfficeAddress2) }} </textarea>
                         </div>
                     </div>
 
@@ -372,14 +363,12 @@
                     <div class="col">
                         <div class="mb-3" id="div_OfficeAddress3">
                             <label for="inputOfficeAddress3" class="form-label">Office Address 3</label>
-                            <textarea class="form-control" id="inputOfficeAddress3"
-                                name="OfficeAddress3"> {{ old('OfficeAddress3', $customer->OfficeAddress3) }} </textarea>
+                            <textarea class="form-control" id="inputOfficeAddress3" name="OfficeAddress3"> {{ old('OfficeAddress3', $customer->OfficeAddress3) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_OfficeAddress4">
                             <label for="inputOfficeAddress4" class="form-label">Office Address 4</label>
-                            <textarea class="form-control" id="inputOfficeAddress4"
-                                name="OfficeAddress4"> {{ old('OfficeAddress4', $customer->OfficeAddress4) }} </textarea>
+                            <textarea class="form-control" id="inputOfficeAddress4" name="OfficeAddress4"> {{ old('OfficeAddress4', $customer->OfficeAddress4) }} </textarea>
                         </div>
                     </div>
                 </div>
@@ -595,7 +584,8 @@
 
                         <div class="mb-3" id="div_BillingNoPenalty">
                             <label for="inputBillingNoPenalty" class="form-label">Billing No Penalty</label>
-                            <input type="text" class="form-control" id="inputBillingNoPenalty" name="BillingNoPenalty"
+                            <input type="text" class="form-control" id="inputBillingNoPenalty"
+                                name="BillingNoPenalty"
                                 value="{{ old('BillingNoPenalty', $customer->BillingNoPenalty) }}">
                         </div>
                     </div>
@@ -604,7 +594,8 @@
                     <div class="col">
                         <div class="mb-3" id="div_DendaBelumDibayar">
                             <label for="inputDendaBelumDibayar" class="form-label">Denda Belum Dibayar</label>
-                            <input type="text" class="form-control" id="inputDendaBelumDibayar" name="DendaBelumDibayar"
+                            <input type="text" class="form-control" id="inputDendaBelumDibayar"
+                                name="DendaBelumDibayar"
                                 value="{{ old('DendaBelumDibayar', $customer->DendaBelumDibayar) }}">
                         </div>
 
@@ -625,8 +616,7 @@
 
                         <div class="mb-3" id="div_LastVisitAddress">
                             <label for="inputLastVisitAddress" class="form-label">Last Visit Address</label>
-                            <textarea class="form-control" id="inputLastVisitAddress"
-                                name="LastVisitAddress"> {{ old('LastVisitAddress', $customer->LastVisitAddress) }} </textarea>
+                            <textarea class="form-control" id="inputLastVisitAddress" name="LastVisitAddress"> {{ old('LastVisitAddress', $customer->LastVisitAddress) }} </textarea>
                         </div>
 
                         <div class="mb-3" id="div_OTSOffer">

@@ -160,36 +160,36 @@
         window.onload = roleSetting();
         var localhost = window.origin + '/';
 
-        function renderTableAdmin() {
+        function renderTableSpv() {
             $(document).ready(function() {
                 var table = $('#table_customer').DataTable({
-                    "ajax": 'index/array',
+                    "ajax": 'array',
                     "columns": [{
-                            "data": "NameCustomer", "defaultContent": ""
+                            "data": "NameCustomer"
                         },
                         {
-                            "data": "Bank", "defaultContent": ""
+                            "data": "Bank"
                         },
                         {
-                            "data": "Action", "defaultContent": ""
+                            "data": "Action"
                         },
                         {
-                            "data": "PTPDate", "defaultContent": ""
+                            "data": "PTPDate"
                         },
                         {
-                            "data": "PTPAmount", "defaultContent": ""
+                            "data": "PTPAmount"
                         },
                         {
-                            "data": "PaidDate", "defaultContent": ""
+                            "data": "PaidDate"
                         },
                         {
-                            "data": "PaidAmount", "defaultContent": ""
+                            "data": "PaidAmount"
                         },
                         {
-                            "data": "ReportDate", "defaultContent": ""
+                            "data": "ReportDate"
                         },
                         {
-                            "data": "ReportAmount", "defaultContent": ""
+                            "data": "ReportAmount"
                         },
                         // {
                         //     "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
@@ -205,7 +205,7 @@
                         }
                     ],
                     columnDefs: [{
-                        "defaultContent": "<i>Data Kosong</i>",
+                        "defaultContent": "",
                         "targets": "_all"
                     }]
                 });
@@ -414,15 +414,15 @@
             let role = document.getElementById('role_value').value;
             let div_import = document.getElementsByClassName('div-import');
             let div_export = document.getElementsByClassName('div-export');
-
-            if (role == 'Supervisor' || role == 'User') {
+            
+            if (role == 'User') {
                 div_export.hidden = true;
                 div_import[0].hidden = true;
                 div_import[1].hidden = true;
 
                 renderTableUser();
-            } else {
-                renderTableAdmin();
+            } else if (role == 'Supervisor') {
+                renderTableSpv();
             }
         }
     </script>

@@ -35,7 +35,6 @@
                 width: 100%;
             }
         }
-
     </style>
 
     <title>Tobadihon Mandiri</title>
@@ -87,11 +86,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user_index') }}">User</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('customer_bd_page') }}">Bulk Delete</a>
+                        </li>
                     @endif
 
-                    @if (session()->get('role') == 'Super Admin' || session()->get('role') == 'Admin')
+                    {{-- @if (session()->get('role') == 'Super Admin' || session()->get('role') == 'Admin')
                         <a class="nav-link" href="{{ route('customer_bd_page') }}">Bulk Delete</a>
-                    @endif
+                    @endif --}}
                 </ul>
             </div>
             {{-- <a class="btn btn-secondary float-right mr-3" href="{{ route('test_detail_page', 1) }}">Test Page</a> --}}
