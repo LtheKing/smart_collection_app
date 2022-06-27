@@ -149,6 +149,11 @@ class CustomerSeeder extends Seeder
                     'LFChouseLocked',
                     'LFCleftMessage',
                 ]),
+                'Report' => $faker->randomElement([
+                    'Orangnya ga ada',
+                    'Marah marah',
+                    'diam aja',
+                ]),
                 'LastReport' => $faker->randomElement([
                     'Orangnya ga ada',
                     'Marah marah',
@@ -187,6 +192,21 @@ class CustomerSeeder extends Seeder
                     'Yes',
                     'No',
                 ]),
+                'IsDeletedByAdmin' => $faker->randomElement([
+                    'No'
+                ]),
+                'Deskcoll_id' => $faker->randomElement([
+                    '6', '73', '74', '75', '76', '77', '79', '80',
+                    '81', '82'
+                ]),
+                'Action' => $faker->randomElement([
+                    'Kabur', 'Sembunyi', 'Bayar', 'Menolak'
+                ]),
+                'ReportDate' => $faker->date,
+                'PTPDate' => $faker->date,
+                'PTPAmount' => $faker->numerify('Rp.#.###.###'),
+                'PaidDate' => $faker->date,
+                'PaidAmount' => $faker->numerify('Rp.#.###.###'),
             ]);
         }
     }

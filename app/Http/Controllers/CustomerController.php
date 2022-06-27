@@ -205,7 +205,16 @@ class CustomerController extends Controller
 
         $data = Customer::find($id);
         $data->update($request->all());
-        return redirect()->route('customer_index')->with('Success', 'Data Customer Berhasil Diubah');
+
+        $session = Session::all();
+        $role = $session['role'];
+
+        if ($role == 'Super Admin' || $role == 'Admin') {
+            return redirect()->route('customer_index_adm')->with('Success', 'Data Customer Berhasil Diubah');
+        } else {
+            return redirect()->route('customer_index_spv')->with('Success', 'Data Customer Berhasil Diubah');
+        }
+
     }
 
     public function export(Request $request)
@@ -307,9 +316,14 @@ class CustomerController extends Controller
                     $pic = User::where('id', $cu->Deskcoll_id)->get();
                     if (count($pic) > 0) {
                         $picName = $pic[0]->name;
-                        $spv = User::where('id', $pic[0]->id)->get();
+                        $spv = User::where('id', $pic[0]->supervisor_id)->get();
                         $cu->PIC = $picName;
-                        $cu->Supervisor = $spv[0]->name;
+                        if (count($spv) > 0) {
+                            # code...
+                            $cu->Supervisor = $spv[0]->name;
+                        } else {
+                            $cu->Supervisor = '';
+                        }
                     }
                 }
                 break;
@@ -323,9 +337,14 @@ class CustomerController extends Controller
                     $pic = User::where('id', $cu->Deskcoll_id)->get();
                     if (count($pic) > 0) {
                         $picName = $pic[0]->name;
-                        $spv = User::where('id', $pic[0]->id)->get();
+                        $spv = User::where('id', $pic[0]->supervisor_id)->get();
                         $cu->PIC = $picName;
-                        $cu->Supervisor = $spv[0]->name;
+                        if (count($spv) > 0) {
+                            # code...
+                            $cu->Supervisor = $spv[0]->name;
+                        } else {
+                            $cu->Supervisor = '';
+                        }
                     }
                 }
 
