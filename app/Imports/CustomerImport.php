@@ -115,6 +115,14 @@ class CustomerImport implements ToModel, WithHeadingRow
 
             'IsDeletedByAdmin'              => $row['isdeletedbyadmin'],
             'Deskcoll_id'                   => $row['deskcoll_id'],
+            
+            'Action'                        => $row['action'],
+            'ReportDate'                    => $row['reportdate'],
+            'PTPDate'                       => $row['ptpdate'],
+            'PTPAmount'                     => $row['ptpamount'],
+            'PaidDate'                      => $row['paiddate'],
+            'PaidAmount'                    => $row['paidamount'],
+            
         ]);
     }
 
