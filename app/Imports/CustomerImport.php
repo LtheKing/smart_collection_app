@@ -29,11 +29,11 @@ class CustomerImport implements ToModel, WithHeadingRow
     {
         $user = User::where('id', $row['deskcoll_id'])->get();
 
-        if(count($user) == 0) {
-            return $row['namecustomer'];
+        if (count($user) == 0) {
+            $namaPic = '-';
+        } else {
+            $namaPic = $user[0]->name;
         }
-
-        $namaPic = $user[0]->name;
 
         return new Customer([
             'NumberCard'                    => $row['numbercard'],
