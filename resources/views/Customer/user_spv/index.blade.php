@@ -268,7 +268,7 @@
                         {
                             "defaultContent": "<button class='btn btn-warning btnEdit btnTable btn-sm' type='button'>Edit</button>" +
                                 "&nbsp;&nbsp;" +
-                                "<button class='btn btn-secondary btnCall btnTable btn-sm' type='button'>Call</button>" +
+                                "<button class='btn btn-secondary btnDetail btnTable btn-sm' type='button'>Detail</button>" +
                                 "&nbsp;&nbsp;" +
                                 "<button class='btn btn-danger btnDelete btnTable btn-sm' type='button' hidden=true>Delete</button>"
                         }
@@ -296,14 +296,14 @@
                         })
                     }
 
-                    // if (action.includes('btnDetail')) {
-                    //     window.location.href = localhost + 'customer/detail/' + data.id;
-                    // }
-
-                    if (action.includes('btnCall')) {
-                        var noTelp = data.Phone1;
-                        window.open('tel:' + noTelp);
+                    if (action.includes('btnDetail')) {
+                        window.location.href = localhost + 'customer/detail/' + data.id;
                     }
+
+                    // if (action.includes('btnCall')) {
+                    //     var noTelp = data.Phone1;
+                    //     window.open('tel:' + noTelp);
+                    // }
                 });
             });
         }

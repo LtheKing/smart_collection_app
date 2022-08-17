@@ -77,10 +77,14 @@
                                 value="{{ old('OSBalance', $customer->OSBalance) }}">
                         </div>
 
-                        <div class="mb-3" id="div_Phone1">
-                            <label for="inputPhone1" class="form-label">Phone 1</label>
-                            <input type="text" class="form-control" id="inputPhone1" name="Phone1"
+                        <div class="input-group mb-3" id="div_Phone1">
+                            <label for="inputPhone1" class="form-label" style="margin: auto;">Phone 1</label>
+                            <input type="text" class="form-control" id="inputPhone1" name="Phone1" style="margin-left: 0.5cm;"
                                 value="{{ old('Phone1', $customer->Phone1) }}">
+
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->Phone1 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
                         <div class="mb-3" id="div_PTPDate">
