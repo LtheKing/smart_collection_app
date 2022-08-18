@@ -113,7 +113,7 @@
                                 value="{{ old('HomePhone1', $customer->HomePhone1) }}" style="margin-left: 0.5cm;">
                         
                             <div class="input-group-append">
-                                <a href="tel:{{ $customer->Phone1 }}" class="btn btn-danger">call</a>
+                                <a href="tel:{{ $customer->HomePhone1 }}" class="btn btn-danger">call</a>
                             </div>
                         </div>
 
