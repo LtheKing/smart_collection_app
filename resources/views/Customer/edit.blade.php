@@ -107,10 +107,14 @@
                             <textarea class="form-control" id="inputAddress1" name="Address1"> {{ old('Address1', $customer->Address1) }} </textarea>
                         </div>
 
-                        <div class="mb-3" id="div_HomePhone1">
-                            <label for="inputHomePhone1" class="form-label">Telepon Rumah 1</label>
+                        <div class="input-group mb-3" id="div_HomePhone1">
+                            <label for="inputHomePhone1" class="form-label" style="margin: auto;">Telepon Rumah 1</label>
                             <input type="text" class="form-control" id="inputHomePhone1" name="HomePhone1"
-                                value="{{ old('HomePhone1', $customer->HomePhone1) }}">
+                                value="{{ old('HomePhone1', $customer->HomePhone1) }}" style="margin-left: 0.5cm;">
+                        
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->Phone1 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
                         <div class="mb-3" id="div_OfficeAddress1">
@@ -124,10 +128,14 @@
                                 value="{{ old('ECName', $customer->ECName) }}">
                         </div>
 
-                        <div class="mb-3" id="div_ECPhone1">
-                            <label for="inputECPhone1" class="form-label">EC Phone 1</label>
+                        <div class="input-group mb-3" id="div_ECPhone1">
+                            <label for="inputECPhone1" class="form-label" style="margin: auto;">EC Phone 1</label>
                             <input type="text" class="form-control" id="inputECPhone1" name="ECPhone1"
-                                value="{{ old('ECPhone1', $customer->ECPhone1) }}">
+                                value="{{ old('ECPhone1', $customer->ECPhone1) }}" style="margin-left: 0.5cm;">
+                            
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->ECPhone1 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
                         <div class="mb-3" id="div_ReportDate">
