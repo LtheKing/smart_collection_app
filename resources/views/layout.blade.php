@@ -37,7 +37,7 @@
         }
     </style>
 
-    <title>Tobadihon Mandiri</title>
+    <title>Pranata Corp</title>
 </head>
 
 <body>

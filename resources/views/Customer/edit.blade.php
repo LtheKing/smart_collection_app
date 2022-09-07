@@ -399,46 +399,67 @@
 
                     {{-- COL 5.1.1.1 --}}
                     <div class="col">
-                        <div class="mb-3" id="div_Phone2">
-                            <label for="inputPhone2" class="form-label">Phone 2</label>
+                        <div class="input-group mb-3" id="div_Phone2">
+                            <label for="inputPhone2" class="form-label" style="margin: auto;">Phone 2</label>
                             <input type="text" class="form-control" id="inputPhone2" name="Phone2"
-                                value="{{ old('Phone2', $customer->Phone2) }}">
+                                value="{{ old('Phone2', $customer->Phone2) }}" style="margin-left: 0.5cm;">
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->Phone2 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
-                        <div class="mb-3" id="div_HomePhone2">
-                            <label for="inputHomePhone2" class="form-label">HomePhone 2</label>
+                        <div class="input-group mb-3" id="div_HomePhone2">
+                            <label for="inputHomePhone2" class="form-label" style="margin: auto;">HomePhone 2</label>
                             <input type="text" class="form-control" id="inputHomePhone2" name="HomePhone2"
-                                value="{{ old('HomePhone2', $customer->HomePhone2) }}">
+                                value="{{ old('HomePhone2', $customer->HomePhone2) }}" style="margin-left: 0.5cm;">
+                            
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->HomePhone2 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
                     </div>
 
                     {{-- COL 5.1.1.1 --}}
                     <div class="col">
-                        <div class="mb-3" id="div_OfficePhone1">
-                            <label for="inputOfficePhone1" class="form-label">Office Phone 1</label>
+                        <div class="input-group mb-3" id="div_OfficePhone1">
+                            <label for="inputOfficePhone1" class="form-label" style="margin: auto;">Office Phone 1</label>
                             <input type="text" class="form-control" id="inputOfficePhone1" name="OfficePhone1"
-                                value="{{ old('OfficePhone1', $customer->OfficePhone1) }}">
+                                value="{{ old('OfficePhone1', $customer->OfficePhone1) }}" style="margin-left: 0.5cm;">
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->OfficePhone1 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
-                        <div class="mb-3" id="div_OfficePhone2">
-                            <label for="inputOfficePhone2" class="form-label">Office Phone 2</label>
+                        <div class="input-group mb-3" id="div_OfficePhone2">
+                            <label for="inputOfficePhone2" class="form-label" style="margin: auto;">Office Phone 2</label>
                             <input type="text" class="form-control" id="inputOfficePhone2" name="OfficePhone2"
-                                value="{{ old('OfficePhone2', $customer->OfficePhone2) }}">
+                                value="{{ old('OfficePhone2', $customer->OfficePhone2) }}" style="margin-left: 0.5cm;">
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->OfficePhone2 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
                     </div>
 
                     {{-- COL 5.1.1.1 --}}
                     <div class="col">
-                        <div class="mb-3" id="div_ECPhone2">
-                            <label for="inputECPhone2" class="form-label">EC Phone 2</label>
+                        <div class="input-group mb-3" id="div_ECPhone2">
+                            <label for="inputECPhone2" class="form-label" style="margin: auto;">EC Phone 2</label>
                             <input type="text" class="form-control" id="inputECPhone2" name="ECPhone2"
-                                value="{{ old('ECPhone2', $customer->ECPhone2) }}">
+                                value="{{ old('ECPhone2', $customer->ECPhone2) }}" style="margin-left: 0.5cm;">
+                            
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->ECPhone2 }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
 
-                        <div class="mb-3" id="div_OtherNumber">
-                            <label for="inputOtherNumber" class="form-label">Other Number</label>
+                        <div class="input-group mb-3" id="div_OtherNumber">
+                            <label for="inputOtherNumber" class="form-label" style="margin: auto;">Other Number</label>
                             <input type="text" class="form-control" id="inputOtherNumber" name="OtherNumber"
-                                value="{{ old('OtherNumber', $customer->OtherNumber) }}">
+                                value="{{ old('OtherNumber', $customer->OtherNumber) }}" style="margin-left: 0.5cm;">
+                            
+                            <div class="input-group-append">
+                                <a href="tel:{{ $customer->OtherNumber }}" class="btn btn-danger">call</a>
+                            </div>
                         </div>
                     </div>
                 </div>
